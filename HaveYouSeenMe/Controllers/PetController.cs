@@ -7,6 +7,7 @@ using HaveYouSeenMe.Models;
 using HaveYouSeenMe.Models.Business;
 using System.IO;
 using HaveYouSeenMe.DAO;
+using HaveYouSeenMe.Utilities;
 
 namespace HaveYouSeenMe.Controllers
 {
@@ -54,24 +55,8 @@ namespace HaveYouSeenMe.Controllers
             IEnumerable<Pet> missingPets = PetManager.GetMissing();
 
             //convert items of the list to viewmodel objects
-            List<PetModel> list = new List<PetModel>();
-            foreach (var pet in missingPets)
-            {
-                list.Add(
-                    new PetModel
-                    {
-                        PetID = pet.PetID,
-                        PetName = pet.PetName,
-                        PetAgeYears = pet.PetAgeYears,
-                        PetAgeMonths = pet.PetAgeMonths,
-                        StatusID = pet.StatusID,
-                        LastSeenOn = pet.LastSeenOn,
-                        LastSeenWhere = pet.LastSeenWhere,
-                        Notes = pet.Notes,
-                        UserId = pet.UserId
-                    }
-                );
-            }
+            IEnumerable<PetModel> list = 
+                ModelsConverter.ConvertList<PetModel>(missingPets);
 
             return View(list);
         }
