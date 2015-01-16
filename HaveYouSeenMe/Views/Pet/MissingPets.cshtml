@@ -1,0 +1,78 @@
+﻿@model IEnumerable<HaveYouSeenMe.Models.PetModel>
+
+@{
+    ViewBag.Title = "MissingPets";
+}
+
+<h2>MissingPets</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PetID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetAgeYears)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetAgeMonths)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastSeenOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastSeenWhere)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetAgeYears)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetAgeMonths)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastSeenOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastSeenWhere)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

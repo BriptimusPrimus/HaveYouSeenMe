@@ -216,6 +216,7 @@
     <Compile Include="Models\Pet.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PetModel.cs" />
     <Compile Include="Models\PetPhoto.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
@@ -385,6 +386,7 @@
     <Content Include="Views\Message\Send.cshtml" />
     <Content Include="Views\Message\ThankYou.cshtml" />
     <Content Include="Views\Pet\GetPhoto.cshtml" />
+    <Content Include="Views\Pet\MissingPets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Uploads\" />

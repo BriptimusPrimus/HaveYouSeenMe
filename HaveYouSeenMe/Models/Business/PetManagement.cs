@@ -78,5 +78,10 @@ namespace HaveYouSeenMe.Models.Business
 
         }
 
+        public IEnumerable<Pet> GetMissing() 
+        {
+            return Dao.GetPets();
+        }
+
     }
 }
