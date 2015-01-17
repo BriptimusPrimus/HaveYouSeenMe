@@ -41,11 +41,12 @@ namespace HaveYouSeenMe.Controllers
         public ActionResult Display()
         {
             var name = (string)RouteData.Values["id"];
-            var model = PetManager.GetByName(name);
+            var pet = PetManager.GetByName(name);
 
-            if (model == null)
+            if (pet == null)
                 return RedirectToAction("NotFound");
 
+            PetModel model = ModelsConverter.ConvertModel<PetModel>(pet);
             return View(model);
         }
 
