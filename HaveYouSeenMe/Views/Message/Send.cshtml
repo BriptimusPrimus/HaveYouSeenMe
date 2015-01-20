@@ -102,6 +102,10 @@ else
         }
         <div id="petDetails">
             @using (Ajax.BeginForm("GetInfo", "Pet",
+                        new RouteValueDictionary 
+                        { 
+                            { "id", ViewBag.PetName } 
+                        },            
                         new AjaxOptions
                         {
                             HttpMethod = "Post",
@@ -111,7 +115,7 @@ else
                         }))
             {
                 <input type="hidden" value="Fido" id="name" name="name" />
-                <button type="submit">Get Pet Details</button>
+                <button type="submit">Get Pet Details @ViewBag.PetName</button>
             }
         </div>
         <div id="loadingDetails" style="display: none">
@@ -140,6 +144,7 @@ else
 
     <script>
         function showPetDetails(petData) {
+            console.log(petData);
             var target = $("#petDetails");
             target.empty();
 
@@ -147,10 +152,12 @@ else
                 target.append("<em>The pet was not found...</em>");
             }
             else {
-                var lastSeenOn = new Date(parseInt(petData.LastSeenOn.substr(6)));
-                var lastSeen = lastSeenOn.getMonth() + 1 + "/"
+                var lastSeenOn = petData.LastSeenOn ?
+                    new Date(parseInt(petData.LastSeenOn.substr(6))) : null;
+                var lastSeen = lastSeenOn ?
+                        lastSeenOn.getMonth() + 1 + "/"
                                    + lastSeenOn.getDate() + "/"
-                                   + lastSeenOn.getFullYear();
+                                   + lastSeenOn.getFullYear() : null;
                 var age = petData.PetAgeYears + " years and "
                                    + petData.PetAgeMonths + " months";
                 var photo = "<img src='/Content/Uploads/" + petData.PetName
@@ -158,13 +165,13 @@ else
                 target.append("<table>");
                 target.append("   <tr><td>Name:</td><td>" + petData.PetName + "</td></tr>");
                 target.append("   <tr><td>Age:</td><td>" + age + "</td></tr>");
-                target.append("   <tr><td>Status:</td><td>" + petData.Status.Description
+                target.append("   <tr><td>Status:</td><td>" + petData.StatusDescription
                                                             + "</td></tr>");
                 target.append("   <tr><td>Last Seen On:</td><td>" + lastSeen
                                                             + "</td></tr>");
                 target.append("   <tr><td>Last Seen Where:</td><td>"
                                                     + petData.LastSeenWhere + "</td></tr>");
-                target.append("   <tr><td>Photo:</td><td>" + photo + "</td></tr>");
+                target.append("   <tr><td></td><td>" + photo + "</td></tr>");
                 target.append("</table>");
             }
         }

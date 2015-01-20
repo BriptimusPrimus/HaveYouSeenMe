@@ -25,6 +25,7 @@ namespace HaveYouSeenMe.Models
         [Required(ErrorMessage = "Please type your message")]
         [StringLength(1500, ErrorMessage = "You can only add up to 1500 characters")]
         [AllowHtml]
+        [DataType(DataType.MultilineText)]
         public string Message { get; set; }
     }
 }

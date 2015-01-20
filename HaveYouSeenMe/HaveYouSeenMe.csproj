@@ -390,6 +390,7 @@
     <Content Include="Views\Message\ThankYou.cshtml" />
     <Content Include="Views\Pet\GetPhoto.cshtml" />
     <Content Include="Views\Pet\MissingPets.cshtml" />
+    <Content Include="Views\Pet\Display.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Uploads\" />

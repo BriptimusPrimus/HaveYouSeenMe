@@ -21,6 +21,13 @@ namespace HaveYouSeenMe.DAO
             Context.SaveChanges();            
         }
 
+        public Pet GetPetById(int id)
+        {
+            Pet p = null;
+            p = Context.Pets.SingleOrDefault(x => x.PetID == id);
+            return p;
+        }
+
         public Pet GetPetByName(string name)
         {
             Pet p = null;

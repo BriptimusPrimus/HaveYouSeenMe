@@ -23,6 +23,12 @@ namespace HaveYouSeenMe.Models.Business
             Dao = petDao;
         }
 
+        public Pet GetById(int id)
+        {
+            Pet p = Dao.GetPetById(id);
+            return p;
+        }
+
         public Pet GetByName(string name)
         {
             Pet p = Dao.GetPetByName(name);

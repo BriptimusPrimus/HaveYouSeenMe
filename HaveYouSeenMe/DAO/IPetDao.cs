@@ -9,6 +9,7 @@ namespace HaveYouSeenMe.DAO
 {
     public interface IPetDao : IDao<Pet>
     {
+        Pet GetPetById(int id);
         Pet GetPetByName(string name);
         IEnumerable<Pet> GetPets();
         IEnumerable<Pet> GetPetsWithStatus(Status status);

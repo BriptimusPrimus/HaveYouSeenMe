@@ -1,0 +1,121 @@
+﻿@model HaveYouSeenMe.Models.PetModel
+
+@{
+    ViewBag.Title = "Display";
+}
+
+<h2>Pet Details</h2>
+
+<div class="">
+    <table class="table table-striped table-bordered" id="pet-display">
+            <tbody>
+                <tr>
+                    <td>
+                        <img src="/Content/Uploads/@(Model.PetName).jpg" style="width:150px;height:120px" />
+                    </td>
+                    <td>                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                             @Html.DisplayNameFor(model => model.PetName)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.PetName)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                             @Html.DisplayNameFor(model => model.PetAgeYears)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.PetAgeYears)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                             @Html.DisplayNameFor(model => model.PetAgeMonths)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.PetAgeMonths)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                             @Html.DisplayNameFor(model => model.StatusDescription)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.StatusDescription)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                             @Html.DisplayNameFor(model => model.LastSeenOn)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.LastSeenOn)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                             @Html.DisplayNameFor(model => model.LastSeenWhere)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.LastSeenWhere)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                             @Html.DisplayNameFor(model => model.Notes)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.Notes)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                             @Html.DisplayNameFor(model => model.OwnerUserName)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.OwnerUserName)
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+    </table>
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "MissingPets")
+</p>

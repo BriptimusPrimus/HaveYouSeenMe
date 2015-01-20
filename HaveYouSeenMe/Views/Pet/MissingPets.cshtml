@@ -6,7 +6,7 @@
 
 <h2>MissingPets</h2>
 
-<table>
+@*<table>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.PetName)
@@ -44,9 +44,137 @@
             @Html.DisplayFor(modelItem => item.LastSeenWhere)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) 
+            @Html.ActionLink("Details", "Display", new { id=item.PetName }) 
         </td>
     </tr>
 }
 
-</table>
+</table>*@
+
+<div class="pet-description">
+
+	<div class="pet-picture">
+		<img src="/Content/Uploads/Fido.jpg" />
+	</div>
+	
+	<div class="pet-info">
+		<h3>Ziggy</h3>		
+		<ul>
+			<li>
+				2 Years, 4 Months					
+			</li>				
+			<li>
+				Missing				
+			</li>
+			<li>
+				Last seen on 12/03/2014
+			</li>
+			<li>
+				At Blv. Park Av. 234...
+			</li>
+			<li>
+				Owner: rbrito
+			</li>
+
+		</ul>		
+	</div>
+	
+@*	<div class="pet-notes">
+		Ziggy is a very nice cute little pig
+	</div>*@
+
+</div>
+
+<div class="pet-description">
+
+	<div class="pet-picture">
+		<img src="/Content/Uploads/Fido.jpg" />
+	</div>
+	
+	<div class="pet-info">
+		<h3>Ziggy</h3>		
+		<ul>
+			<li>
+				2 Years, 4 Months					
+			</li>				
+			<li>
+				Missing				
+			</li>
+			<li>
+				Last seen on 12/03/2014
+			</li>
+			<li>
+				At Blv. Park Av. 234...
+			</li>
+			<li>
+				Owner: rbrito
+			</li>
+
+		</ul>		
+	</div>
+	
+@*	<div class="pet-notes">
+		Ziggy is a very nice cute little pig
+	</div>*@
+
+</div>
+
+
+
+@section Styles {
+    <style>
+	    .pet-description {
+		    position: relative;
+            margin: 1em 0;
+            padding: .3em;
+            background-color: #ff6a00;
+	    }
+
+        .pet-description::after {
+            content: "";           
+            clear: both;
+            width: 100%;
+            display: block;
+        }
+	
+	    .pet-picture {
+		    width: 35%;
+		    float: left;
+            min-width: 8em;
+	    }
+	
+	    .pet-picture img {
+		    width: 100%;
+		    height: 100%;
+		    margin: 0 auto;
+	    }
+
+        .pet-info {
+            width: 64%;
+            float: left;
+            padding-left: 2em;
+	    }
+
+        .pet-info ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+	    .pet-info li {
+            width: 50%;
+            float: left;	                
+            min-width: 10em;
+            padding-right: 1em;
+	    }        	
+	
+	    .pet-notes {
+		    position: absolute;
+		    top: 105%;
+            display: none;
+	    }
+	
+	    .pet-description, .pet-description * {
+		    box-sizing: border-box;
+	    }
+    </style>
+}
