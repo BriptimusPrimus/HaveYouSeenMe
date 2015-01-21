@@ -27,5 +27,10 @@ namespace HaveYouSeenMe.Models
         [AllowHtml]
         [DataType(DataType.MultilineText)]
         public string Message { get; set; }
+
+        [Required(ErrorMessage = "Could not find pet owner")]
+        public string PetName { get; set; }
+
+        public string To { get; set; }
     }
 }

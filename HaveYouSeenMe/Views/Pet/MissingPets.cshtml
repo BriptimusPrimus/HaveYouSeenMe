@@ -6,120 +6,43 @@
 
 <h2>MissingPets</h2>
 
-@*<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PetName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PetAgeYears)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PetAgeMonths)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastSeenOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastSeenWhere)
-        </th>
-        <th></th>
-    </tr>
+    @foreach (var item in Model) {
+        <div class="pet-description">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PetName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PetAgeYears)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PetAgeMonths)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastSeenOn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastSeenWhere)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Display", new { id=item.PetName }) 
-        </td>
-    </tr>
-}
-
-</table>*@
-
-<div class="pet-description">
-
-	<div class="pet-picture">
-		<img src="/Content/Uploads/Fido.jpg" />
-	</div>
+	        <div class="pet-picture">
+                <a href="@Url.Action("Display","Pet", new { id=item.PetName })"><img src="/Content/Uploads/@(item.PetName).jpg"/></a>
+	        </div>
 	
-	<div class="pet-info">
-		<h3>Ziggy</h3>		
-		<ul>
-			<li>
-				2 Years, 4 Months					
-			</li>				
-			<li>
-				Missing				
-			</li>
-			<li>
-				Last seen on 12/03/2014
-			</li>
-			<li>
-				At Blv. Park Av. 234...
-			</li>
-			<li>
-				Owner: rbrito
-			</li>
-
-		</ul>		
-	</div>
+	        <div class="pet-info">
+		        <h3>@Html.DisplayFor(modelItem => item.PetName)</h3>		
+		        <ul>
+			        <li>
+				        @Html.DisplayFor(modelItem => item.PetAgeYears) Years, @Html.DisplayFor(modelItem => item.PetAgeMonths) Months					
+			        </li>				
+			        <li>
+				        @Html.DisplayFor(modelItem => item.StatusDescription)		
+			        </li>
+			        <li>
+				        Last seen on @Html.DisplayFor(modelItem => item.LastSeenOn)
+			        </li>
+			        <li>
+				        At @Html.DisplayFor(modelItem => item.LastSeenWhere)	
+			        </li>
+			        <li>
+				        Owner: @Html.DisplayFor(modelItem => item.OwnerUserName)
+			        </li>
+			        <li>
+				        @Html.ActionLink("Send Message to Owner", "Send", "Message", new { id=item.PetName }, null)    
+			        </li>
+		        </ul>		
+	        </div>
 	
-@*	<div class="pet-notes">
-		Ziggy is a very nice cute little pig
-	</div>*@
+	        <div class="pet-notes">
+		        @Html.DisplayFor(modelItem => item.Notes)
+	        </div>
 
-</div>
-
-<div class="pet-description">
-
-	<div class="pet-picture">
-		<img src="/Content/Uploads/Fido.jpg" />
-	</div>
-	
-	<div class="pet-info">
-		<h3>Ziggy</h3>		
-		<ul>
-			<li>
-				2 Years, 4 Months					
-			</li>				
-			<li>
-				Missing				
-			</li>
-			<li>
-				Last seen on 12/03/2014
-			</li>
-			<li>
-				At Blv. Park Av. 234...
-			</li>
-			<li>
-				Owner: rbrito
-			</li>
-
-		</ul>		
-	</div>
-	
-@*	<div class="pet-notes">
-		Ziggy is a very nice cute little pig
-	</div>*@
-
-</div>
-
-
+        </div>
+    }
 
 @section Styles {
     <style>
@@ -127,7 +50,7 @@
 		    position: relative;
             margin: 1em 0;
             padding: .3em;
-            background-color: #ff6a00;
+            background-color: #BBBBBB;
 	    }
 
         .pet-description::after {
@@ -138,7 +61,7 @@
         }
 	
 	    .pet-picture {
-		    width: 35%;
+		    width: 20%;
 		    float: left;
             min-width: 8em;
 	    }
@@ -169,12 +92,28 @@
 	
 	    .pet-notes {
 		    position: absolute;
-		    top: 105%;
+		    top: 92%;
+            width: 100%;
+            z-index: 1;
+            background-color: #ff6a00;
             display: none;
+            left: 0;
 	    }
 	
 	    .pet-description, .pet-description * {
 		    box-sizing: border-box;
 	    }
+
+        .pet-description:hover .pet-notes {
+            display: block;
+        }
+
+        .pet-notes:before {
+            content:""; display:block; border-width:10px; 
+            border-style:solid; border-left-color:transparent; 
+            border-right-color:transparent; 
+            border-bottom-color:#ff6a00; border-top:none; 
+            position:absolute; margin-top:-8px; left:10px;
+        }
     </style>
 }

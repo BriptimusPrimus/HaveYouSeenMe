@@ -46,16 +46,7 @@ else
 
         <h2>Send Message</h2>
 
-        @using (Ajax.BeginForm(new AjaxOptions
-        {
-            Confirm = "Are you sure you want to send this message?",
-            HttpMethod = "Post",
-            InsertionMode = InsertionMode.Replace,
-            LoadingElementId = "loading",
-            UpdateTargetId = "messageForm",
-            OnBegin = "beginRequest",
-            OnComplete = "endRequest"
-        }))
+        @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
@@ -96,6 +87,7 @@ else
                 </div>
 
                 <p>
+                    <input type="hidden" value="@ViewBag.PetName" id="PetName" name="PetName" />
                     <input type="submit" id="submitButton" value="Send Message" />
                 </p>
             </fieldset>
