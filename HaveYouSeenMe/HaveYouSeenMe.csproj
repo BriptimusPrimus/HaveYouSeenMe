@@ -384,13 +384,15 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Pet\NotFound.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Views\Pet\PictureUpload.cshtml" />
     <Content Include="Views\Message\Send.cshtml" />
     <Content Include="Views\Message\ThankYou.cshtml" />
     <Content Include="Views\Pet\GetPhoto.cshtml" />
     <Content Include="Views\Pet\MissingPets.cshtml" />
     <Content Include="Views\Pet\Display.cshtml" />
+    <Content Include="Views\Members\PetsOwned.cshtml" />
+    <Content Include="Views\Members\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Uploads\" />

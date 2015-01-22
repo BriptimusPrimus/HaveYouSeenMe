@@ -50,5 +50,31 @@ namespace HaveYouSeenMe.DAO
                         select pet;                        
             return result.ToArray();
         }
+
+        public IEnumerable<Pet> GetPetsFromOwner(string UserName)
+        {
+            IEnumerable<Pet> result = null;
+            result = from pet in Context.Pets
+                     where pet.UserProfile.UserName == UserName.ToLower()
+                     select pet;                           
+            return result;
+        }
+
+        public UserProfile GetUserByName(string UserName)
+        {
+            UserProfile result = null;
+
+            try
+            {
+                result = Context.UserProfiles.SingleOrDefault
+                    (x => x.UserName == UserName.ToLower());
+            }
+            catch (InvalidOperationException)
+            {
+                return null;
+            }
+
+            return result;
+        }
     }
 }

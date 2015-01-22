@@ -1,0 +1,76 @@
+﻿@model HaveYouSeenMe.Models.PetModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PetModel</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PetName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PetName)
+            @Html.ValidationMessageFor(model => model.PetName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PetAgeYears)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PetAgeYears)
+            @Html.ValidationMessageFor(model => model.PetAgeYears)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PetAgeMonths)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PetAgeMonths)
+            @Html.ValidationMessageFor(model => model.PetAgeMonths)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastSeenOn)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastSeenOn)
+            @Html.ValidationMessageFor(model => model.LastSeenOn)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastSeenWhere)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastSeenWhere)
+            @Html.ValidationMessageFor(model => model.LastSeenWhere)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Notes)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Notes)
+            @Html.ValidationMessageFor(model => model.Notes)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "PetsOwned")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

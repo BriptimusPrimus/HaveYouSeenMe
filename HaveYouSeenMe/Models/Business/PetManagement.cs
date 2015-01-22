@@ -33,7 +33,54 @@ namespace HaveYouSeenMe.Models.Business
         {
             Pet p = Dao.GetPetByName(name);
             return p;
-        }        
+        }
+
+        public Pet CreateNew(Pet pet, string userName)
+        {
+            Pet result = null;
+
+            //
+            // Business rules validations
+            //
+            
+            if (string.IsNullOrEmpty(pet.PetName))
+            {
+                throw new ApplicationException("Pet name is required");
+            }
+
+
+            //
+            // Business rules data values
+            //
+
+            //Initial status of a new pet always "lost"
+            pet.StatusID = 1;
+
+            //Add pet to currently logged in user           
+            UserProfile user = Dao.GetUserByName(userName);
+            if (user == null)
+            {
+                throw new ApplicationException("User not logged in");
+            }
+            pet.UserId = user.UserId;
+
+
+            //save the new data
+            try
+            {
+                result = Dao.Save(pet);
+            }
+            catch (Exception Ex) //pokemon exception handling
+            { 
+                //log exception e
+
+                //throw exception to indicate fail
+                throw new ApplicationException("Data base error");                
+            }
+
+            //succeed
+            return result;
+        }
 
         public static void CreateThumbnail(string fileName, string filePath,
                                                    int thumbWi, int thumbHi,
@@ -88,6 +135,17 @@ namespace HaveYouSeenMe.Models.Business
         {
             IEnumerable<Pet> list = null;
             list = Dao.GetPets();
+            return list;
+        }
+
+        public IEnumerable<Pet> GetPetsFromOwner(string UserName)
+        {
+            IEnumerable<Pet> list = null;
+            list = Dao.GetPetsFromOwner(UserName);
+            if (list == null)
+            {
+                return new Pet[0];
+            }
             return list;
         }
 

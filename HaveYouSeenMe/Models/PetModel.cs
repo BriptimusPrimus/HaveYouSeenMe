@@ -13,12 +13,16 @@ namespace HaveYouSeenMe.Models
         public int PetID { get; set; }
 
         [Display(Name = "Name:")]
+        [Required(ErrorMessage = "Please type your pet name")]
+        [StringLength(100, ErrorMessage = "You can only add up to 100 characters")]
         public string PetName { get; set; }
 
         [Display(Name = "Years:")]
+        [Range(0, int.MaxValue, ErrorMessage = "The value must be 0 or greater than 0")]
         public int? PetAgeYears { get; set; }
 
         [Display(Name = "Months:")]
+        [Range(0, int.MaxValue, ErrorMessage = "The value must be 0 or greater than 0")]
         public int? PetAgeMonths { get; set; }
 
         [Display(Name = "Status ID:")]
@@ -26,9 +30,10 @@ namespace HaveYouSeenMe.Models
 
         [Display(Name = "Last Seen On:")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = false)]
+        [DataType(DataType.Date)]
         public System.DateTime? LastSeenOn { get; set; }
 
-        [Display(Name = "Last Seen At:", Prompt = "shalalalala")]
+        [Display(Name = "Last Seen At:", Prompt = "testing a prompt")]
         public string LastSeenWhere { get; set; }
 
         [Display(Name = "Notes:")]
@@ -41,6 +46,15 @@ namespace HaveYouSeenMe.Models
 
         [Display(Name = "Owner:")]
         public string OwnerUserName { get; set; }
+
+        [Display(Name = "Age(Years-Months):")]
+        public string PetAge 
+        {
+            get 
+            {
+                return this.PetAgeYears + " - " + this.PetAgeMonths;
+            } 
+        }
 
         public bool GetValues(Object obj) 
         {
@@ -66,6 +80,23 @@ namespace HaveYouSeenMe.Models
             this.OwnerUserName = pet.UserProfile.UserName;
 
             return true;
+        }
+
+        public Pet ToDataModel()
+        {
+            //transform to original data object 
+            return new Pet 
+            {
+                PetID = this.PetID,
+                PetName = this.PetName,
+                PetAgeYears = this.PetAgeYears,
+                PetAgeMonths = this.PetAgeMonths,
+                StatusID = this.StatusID,
+                LastSeenOn = this.LastSeenOn,
+                LastSeenWhere = this.LastSeenWhere,
+                Notes = this.Notes,
+                UserId = this.UserId        
+            };            
         }
 
     }

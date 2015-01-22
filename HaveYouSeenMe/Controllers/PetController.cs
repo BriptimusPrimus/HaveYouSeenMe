@@ -36,18 +36,6 @@ namespace HaveYouSeenMe.Controllers
             return View();
         }
 
-        [Authorize]
-        public ActionResult Details(int id = 0)
-        {
-            var pet = PetManager.GetById(id);
-
-            if (pet == null)
-                return RedirectToAction("NotFound");
-
-            PetModel model = ModelsConverter.ConvertModel<PetModel>(pet);
-            return View(model);
-        }
-
         //[Authorize(Users = "rbrito")]
         //[Authorize]
         public ActionResult Display()
