@@ -10,5 +10,11 @@ namespace HaveYouSeenMe.Models
     {
         [Required]
         public HttpPostedFileBase PictureFile { get; set; }
+
+        [Required]
+        public int PetID { get; set; }
+
+        [Required]
+        public string PetName { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace HaveYouSeenMe.DAO
     public interface IDao<TEntity>
     {
         TEntity Save(TEntity entity);
+        TEntity Update(TEntity entity);
         void Delete(TEntity entity);
     }
 }

@@ -13,7 +13,10 @@ namespace HaveYouSeenMe.DAO
         Pet GetPetByName(string name);
         IEnumerable<Pet> GetPets();
         IEnumerable<Pet> GetPetsWithStatus(Status status);
+        IEnumerable<Pet> GetPetsWithStatus(string status);
         IEnumerable<Pet> GetPetsFromOwner(string UserName);
         UserProfile GetUserByName(string UserName);
+        Status GetStatus(string description);
+        Status GetStatus(int id);
     }
 }

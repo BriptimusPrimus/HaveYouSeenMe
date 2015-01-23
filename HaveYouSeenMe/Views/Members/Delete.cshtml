@@ -1,0 +1,75 @@
+﻿@model HaveYouSeenMe.Models.PetModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>PetModel</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PetID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PetID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PetName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PetName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PetAge)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PetAge)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StatusDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StatusDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastSeenOn)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastSeenOn)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastSeenWhere)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastSeenWhere)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Notes)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Notes)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.OwnerUserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OwnerUserName)
+    </div>
+
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "PetsOwned")
+    </p>
+}

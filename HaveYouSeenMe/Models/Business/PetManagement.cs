@@ -48,6 +48,16 @@ namespace HaveYouSeenMe.Models.Business
                 throw new ApplicationException("Pet name is required");
             }
 
+            //make years or months have a value of 0 if the other one is set
+            if (pet.PetAgeYears == null && pet.PetAgeMonths != null)
+            {
+                pet.PetAgeYears = 0;
+            }
+            else if (pet.PetAgeYears != null && pet.PetAgeMonths == null)
+            {
+                pet.PetAgeMonths = 0;
+            }
+
 
             //
             // Business rules data values
@@ -70,6 +80,10 @@ namespace HaveYouSeenMe.Models.Business
             {
                 result = Dao.Save(pet);
             }
+            catch (ApplicationException Ex)
+            {
+                throw Ex;
+            }
             catch (Exception Ex) //pokemon exception handling
             { 
                 //log exception e
@@ -80,6 +94,78 @@ namespace HaveYouSeenMe.Models.Business
 
             //succeed
             return result;
+        }
+
+        public Pet Update(Pet pet)
+        {
+
+            Pet result = null;
+
+            //
+            // Business rules validations
+            //
+            
+            //make years or months have a value of 0 if the other one is set
+            if (pet.PetAgeYears == null && pet.PetAgeMonths != null)
+            {
+                pet.PetAgeYears = 0;
+            }
+            else if (pet.PetAgeYears != null && pet.PetAgeMonths == null)
+            {
+                pet.PetAgeMonths = 0;
+            }
+
+
+            //save the updated data
+            try
+            {
+                result = Dao.Update(pet);
+            }
+            catch(ApplicationException Ex)
+            {
+                throw Ex;    
+            }
+            catch (Exception Ex) //pokemon exception handling
+            {
+                //log exception e
+
+                //throw exception to indicate fail
+                throw new ApplicationException("Data base error");
+            }
+
+            //succeed
+            return result;
+        }
+
+        public bool Delete(int PetID)
+        {
+            //try deleting pet image first
+
+
+            //delete pet data from database
+            try
+            {
+                //make sure pet exists
+                Pet pet = Dao.GetPetById(PetID);
+                if (pet == null)
+                {
+                    throw new ApplicationException("Inexistent record");
+                }
+                Dao.Delete(pet);
+            }
+            catch (ApplicationException Ex)
+            {
+                throw Ex;
+            }
+            catch (Exception Ex) //pokemon exception handling
+            {
+                //log exception e
+
+                //throw exception to indicate fail
+                throw new ApplicationException("Data base error");
+            }
+
+            return true;
         }
 
         public static void CreateThumbnail(string fileName, string filePath,
@@ -134,7 +220,9 @@ namespace HaveYouSeenMe.Models.Business
         public IEnumerable<Pet> GetMissing() 
         {
             IEnumerable<Pet> list = null;
-            list = Dao.GetPets();
+
+            //define status "lost"
+            list = Dao.GetPetsWithStatus("lost");
             return list;
         }
 

@@ -1,0 +1,145 @@
+﻿@model HaveYouSeenMe.Models.PetModel
+
+@{
+    ViewBag.Title = "Edit Pet Data";
+}
+
+<h2>Edit Pet Data [@Html.DisplayFor(model => model.PetName)]</h2>
+
+@{
+    //format date value
+    string FormatedDate = "";
+    if (Model.LastSeenOn != null)
+    {
+        FormatedDate = Model.LastSeenOn.Value.ToString("yyyy-MM-dd");    
+    }
+}
+
+@using (Html.BeginForm("PictureUpload", "Members", FormMethod.Post, new { enctype = "multipart/form-data", id = "UploadForm"}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="editor-field">
+        @Html.TextBox("PictureFile", null, 
+            new 
+            { 
+                type = "file", 
+                id = "PictureFile",
+                accept=".jpg",
+                style="display: none"  
+            })
+    </div>
+    
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.PetID)
+            @Html.ValidationMessageFor(model => model.PetID)
+        </div>
+    
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.PetName)
+            @Html.ValidationMessageFor(model => model.PetName)
+        </div>        
+}
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PetModel</legend>
+
+        <div class="display-field">
+            @Html.HiddenFor(model => model.PetID)
+            @Html.HiddenFor(model => model.PetName)
+            @Html.ValidationMessageFor(model => model.PetName)
+        </div>
+
+        <div class="display-field">
+            <img src="/Content/Uploads/@(Model.PetName).jpg" id="PetImage" style="width:150px;height:120px" />
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PetAgeYears)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PetAgeYears)
+            @Html.ValidationMessageFor(model => model.PetAgeYears)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PetAgeMonths)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PetAgeMonths)
+            @Html.ValidationMessageFor(model => model.PetAgeMonths)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StatusID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StatusID)
+            @Html.ValidationMessageFor(model => model.StatusID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastSeenOn)
+        </div>
+        <div class="editor-field">
+            <p>@Html.DisplayFor(model => model.LastSeenOn)</p>
+            @*@Html.EditorFor(model => model.LastSeenOn)*@
+            @Html.TextBoxFor(m => m.LastSeenOn,
+                new 
+                { 
+                    @Value = FormatedDate,
+                    @Type = "date"
+                })
+            @Html.ValidationMessageFor(model => model.LastSeenOn)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastSeenWhere)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastSeenWhere)
+            @Html.ValidationMessageFor(model => model.LastSeenWhere)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Notes)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Notes)
+            @Html.ValidationMessageFor(model => model.Notes)
+        </div>
+        
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "PetsOwned")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            //trigger native file select dialog
+            $("#PetImage").on("click", function (e) {
+                e.preventDefault();
+
+                $("#PictureFile").click();                
+            });
+
+            $("#PictureFile").on("change", function (e) {
+                if (this.value != "") {
+                    $("#UploadForm").submit();
+                }
+            })
+        });
+    </script>
+}

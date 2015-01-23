@@ -11,6 +11,7 @@
 </p>
 <table>
     <tr>
+        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.PetName)
         </th>
@@ -35,6 +36,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            <img src="/Content/Uploads/thumbnail_@(item.PetName).jpg" style="width:60px;height:60px" />
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.PetName)
         </td>
         <td>
@@ -52,10 +56,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.StatusDescription)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PetID }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        <td>            
+            <p>@Html.ActionLink("Edit", "Edit", new { id=item.PetID }) </p>
+            <p> @Html.ActionLink("Details", "Details", new { id=item.PetID }) </p>
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.PetID })*@
         </td>
     </tr>
 }

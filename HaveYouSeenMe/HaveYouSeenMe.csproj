@@ -393,6 +393,8 @@
     <Content Include="Views\Pet\Display.cshtml" />
     <Content Include="Views\Members\PetsOwned.cshtml" />
     <Content Include="Views\Members\Create.cshtml" />
+    <Content Include="Views\Members\Edit.cshtml" />
+    <Content Include="Views\Members\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Uploads\" />

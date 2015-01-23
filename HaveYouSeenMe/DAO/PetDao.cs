@@ -10,9 +10,32 @@ namespace HaveYouSeenMe.DAO
     {
         public override Pet Save(Pet entity)
         {
-            Context.Pets.Add(entity);
+            Context.Pets.Add(entity);           
             Context.SaveChanges();
             return entity;
+        }
+
+        public override Pet Update(Pet entity)
+        {
+            //make sure pet exists
+            Pet original = Context.Pets.Find(entity.PetID);
+            if (original == null)
+            {
+                throw new ApplicationException("Inexistent record");
+            }                
+
+            //modify only updatable fields
+            original.PetAgeYears = entity.PetAgeYears;
+            original.PetAgeMonths = entity.PetAgeMonths;
+            original.StatusID = entity.StatusID;
+            original.LastSeenOn = entity.LastSeenOn;
+            original.LastSeenWhere = entity.LastSeenWhere;
+            original.Notes = entity.Notes;
+
+            //save changes
+            Context.SaveChanges();
+
+            return original;
         }
 
         public override void Delete(Pet entity)
@@ -51,6 +74,15 @@ namespace HaveYouSeenMe.DAO
             return result.ToArray();
         }
 
+        public IEnumerable<Pet> GetPetsWithStatus(string status)
+        {
+            IEnumerable<Pet> result = null;
+            result = from pet in Context.Pets
+                     where pet.Status.Description == status.ToLower()
+                     select pet;
+            return result.ToArray();
+        }
+
         public IEnumerable<Pet> GetPetsFromOwner(string UserName)
         {
             IEnumerable<Pet> result = null;
@@ -75,6 +107,20 @@ namespace HaveYouSeenMe.DAO
             }
 
             return result;
+        }
+
+        public Status GetStatus(string description)
+        {
+            Status s = null;
+            s = Context.Status.SingleOrDefault(x => x.Description.Contains(description));
+            return s;
+        }
+
+        public Status GetStatus(int id)
+        {
+            Status s = null;
+            s = Context.Status.Find(id);
+            return s;
         }
     }
 }

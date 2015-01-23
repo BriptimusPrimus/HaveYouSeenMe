@@ -29,7 +29,8 @@ namespace HaveYouSeenMe.Models
         public int StatusID { get; set; }
 
         [Display(Name = "Last Seen On:")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public System.DateTime? LastSeenOn { get; set; }
 
@@ -37,6 +38,8 @@ namespace HaveYouSeenMe.Models
         public string LastSeenWhere { get; set; }
 
         [Display(Name = "Notes:")]
+        [StringLength(400, ErrorMessage = "You can only add up to 400 characters")]
+        [DataType(DataType.MultilineText)]
         public string Notes { get; set; }
         
         public int UserId { get; set; }

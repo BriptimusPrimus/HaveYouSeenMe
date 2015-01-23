@@ -38,6 +38,8 @@ namespace HaveYouSeenMe.DAO
 
         public abstract TEntity Save(TEntity entity);
 
+        public abstract TEntity Update(TEntity entity);
+
         public abstract void Delete(TEntity entity);
 
         #endregion
