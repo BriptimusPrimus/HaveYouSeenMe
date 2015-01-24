@@ -87,7 +87,6 @@
         </div>
         <div class="editor-field">
             <p>@Html.DisplayFor(model => model.LastSeenOn)</p>
-            @*@Html.EditorFor(model => model.LastSeenOn)*@
             @Html.TextBoxFor(m => m.LastSeenOn,
                 new 
                 { 
@@ -139,7 +138,7 @@
                 if (this.value != "") {
                     $("#UploadForm").submit();
                 }
-            })
+            });
         });
     </script>
 }

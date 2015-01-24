@@ -100,7 +100,7 @@ namespace HaveYouSeenMe.Controllers
             //instruct the business layer to persist the new object
             try
             {
-                PetManager.CreateNew(pet, User.Identity.Name);
+                pet = PetManager.CreateNew(pet, User.Identity.Name);
             }
             catch(ApplicationException Ex)
             {            
@@ -115,7 +115,7 @@ namespace HaveYouSeenMe.Controllers
             }
 
             //succeed
-            return RedirectToAction("PetsOwned");            
+            return RedirectToAction("Edit", new { id = pet.PetID });           
         }
 
         //
@@ -239,7 +239,7 @@ namespace HaveYouSeenMe.Controllers
             }
             catch (Exception Ex)
             {
-                ModelState.AddModelError("", Ex.Message);
+                ModelState.AddModelError("", "Could not upload image, try later");
                 return View("Edit", new PetModel { PetName = model.PetName });
                 //return RedirectToAction("Edit", new { id = model.PetID });
             }

@@ -7,61 +7,85 @@
 <h2>PetsOwned</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add New Pet", "Create")
 </p>
-<table>
-    <tr>
-        <th></th>
-        <th>
-            @Html.DisplayNameFor(model => model.PetName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PetAge)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastSeenOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastSeenWhere)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StatusDescription)
-        </th>
-        <th></th>
-    </tr>
+<table id="myTableId" class="stripe hover row-border order-column">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.PetName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PetAge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastSeenOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastSeenWhere)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusDescription)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <img src="/Content/Uploads/thumbnail_@(item.PetName).jpg" style="width:60px;height:60px" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PetName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PetAge)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastSeenOn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastSeenWhere)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Notes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StatusDescription)
-        </td>
-        <td>            
-            <p>@Html.ActionLink("Edit", "Edit", new { id=item.PetID }) </p>
-            <p> @Html.ActionLink("Details", "Details", new { id=item.PetID }) </p>
-            @*@Html.ActionLink("Delete", "Delete", new { id=item.PetID })*@
-        </td>
-    </tr>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                <img src="/Content/Uploads/thumbnail_@(item.PetName).jpg" style="width:60px;height:60px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetAge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastSeenOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastSeenWhere)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusDescription)
+            </td>
+            <td>            
+                <p>@Html.ActionLink("Edit", "Edit", new { id=item.PetID }) </p>
+                <p> @Html.ActionLink("Details", "Details", new { id=item.PetID }) </p>
+                @*@Html.ActionLink("Delete", "Delete", new { id=item.PetID })*@
+            </td>
+        </tr>
+    }
+
+    </tbody>
+</table>
+
+@section Scripts {
+    @Styles.Render("~/Content/themes/table/css")
+    @Scripts.Render("~/bundles/table")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $("#myTableId").dataTable({
+                bJQueryUI: true,
+                sPaginationType: "full_numbers",
+                "aoColumns": [ 
+                                { "bSortable": false },//Disable sorting on this column
+                                null,
+                                { "sSortDataType": "dom-text", "sType": "numeric" }, 
+                                { "sSortDataType": "dom-text", "sType": "date" },
+                                null,
+                                null,
+                                { "bSortable": false }
+                             ]
+            });
+        });
+    </script>
 }
 
-</table>

@@ -328,7 +328,26 @@
       <DependentUpon>DataModel.edmx</DependentUpon>
       <LastGenOutput>DataModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\DataTables-1.10.4\images\Sorting icons.psd" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\DataTables-1.10.4\css\jquery.dataTables.css" />
+    <Content Include="Scripts\DataTables-1.10.4\css\jquery.dataTables.min.css" />
+    <Content Include="Scripts\DataTables-1.10.4\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Scripts\DataTables-1.10.4\images\back_disabled.png" />
+    <Content Include="Scripts\DataTables-1.10.4\images\back_enabled.png" />
+    <Content Include="Scripts\DataTables-1.10.4\images\back_enabled_hover.png" />
+    <Content Include="Scripts\DataTables-1.10.4\images\favicon.ico" />
+    <Content Include="Scripts\DataTables-1.10.4\images\forward_disabled.png" />
+    <Content Include="Scripts\DataTables-1.10.4\images\forward_enabled.png" />
+    <Content Include="Scripts\DataTables-1.10.4\images\forward_enabled_hover.png" />
+    <Content Include="Scripts\DataTables-1.10.4\images\sort_asc.png" />
+    <Content Include="Scripts\DataTables-1.10.4\images\sort_asc_disabled.png" />
+    <Content Include="Scripts\DataTables-1.10.4\images\sort_both.png" />
+    <Content Include="Scripts\DataTables-1.10.4\images\sort_desc.png" />
+    <Content Include="Scripts\DataTables-1.10.4\images\sort_desc_disabled.png" />
+    <Content Include="Scripts\DataTables-1.10.4\js\jquery.dataTables.js" />
+    <Content Include="Scripts\DataTables-1.10.4\js\jquery.dataTables.min.js" />
+    <Content Include="Scripts\DataTables-1.10.4\js\jquery.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

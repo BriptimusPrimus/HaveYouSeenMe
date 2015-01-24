@@ -23,6 +23,9 @@ namespace HaveYouSeenMe
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/table").Include(
+                                            "~/Scripts/DataTables-1.10.4/js/jquery.dataTables.js"));
+
             //bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css", "~/Content/zocial.css"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
                                     "~/Content/site.css",
@@ -40,7 +43,12 @@ namespace HaveYouSeenMe
                         "~/Content/themes/base/jquery.ui.tabs.css",
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
-                        "~/Content/themes/base/jquery.ui.theme.css"));            
+                        "~/Content/themes/base/jquery.ui.theme.css"));
+
+            bundles.Add(new StyleBundle("~/Content/themes/table/css").Include(
+                                            "~/Scripts/DataTables-1.10.4/css/jquery.dataTables.css",
+                                            "~/Scripts/DataTables-1.10.4/css/jquery.dataTables_themeroller.css"));
+
         }
     }
 }
