@@ -188,6 +188,10 @@ footer {
 /* menu
 ----------------------------------------------------------*/
 
+nav {
+    margin-bottom: 0;
+}
+
 ul#menu {
     margin: 0;
     padding: 0;    
@@ -207,14 +211,18 @@ ul#menu {
         background-color: #EEE;
         margin: 0;
         padding: 3px;
-        color: #777;
-        cursor: pointer;
+        color: #777;        
     }
+
+        ul#menu li.menu-option span {
+            cursor: pointer;
+        }
 
         ul#menu li.menu-option:hover {
             color: #FC6512;
             /*background-color: #CDE6FF;*/
-            background-color: rgb(19, 55, 131);
+            /*background-color: rgb(19, 55, 131);*/
+            background-color: #DADFE5;
         }
 
             ul#menu li.menu-option:hover div.menu-bubble {
@@ -225,39 +233,56 @@ ul#menu {
 	        position: absolute;
             font-size: .8em;
             /*background-color: #CDE6FF;*/ 
-            background-color: rgb(19, 55, 131); 
-            color: #FFF;
-	        top:95%; 
-            right: -4px;
-            z-index: 1;
-            width: 500px;
-            padding: 10px;
+            /*background-color: rgb(19, 55, 131);*/ 
+            background-color: #DADFE5;
+            color: #666;
+	        top:95%;             
+            z-index: 1;            
+            padding: .9em;
             border-radius: 7px 0 7px 7px;
-            display: none;    
+            display: none; 
+            right: 0px;
         }
 
-            ul#menu li div a {
-                color: #FC6512; 
-                text-decoration: none;   
+            ul#menu li.menu-option div.menu-bubble ul{
+                white-space: nowrap; 
+                padding: 1em;  
             }
 
-        ul#menu li.menu-option div.menu-bubble img {
-            width: 99%;
-            height: 99%;
-        }
+            ul#menu li.menu-option div.menu-bubble .blubble-content {
+                width: 400px;
+            }
 
-        ul#menu li.menu-option div.menu-bubble .spetial {
-            color: #CDE6FF;     
-        }
+            ul#menu li.menu-option div.menu-bubble a {
+                color: #FC6512;                 
+                text-decoration: none; 
+                cursor: pointer;
+                display: inline-block;
+                margin-top: .5em; 
+            }
 
-        ul#menu li.menu-option div.menu-bubble input {
-            border: 1px solid #e2e2e2;
-            background: #CDE6FF;
-            color: #933;
-            margin: 5px 0 6px 0;
-            padding: 5px;
-            width: 150px;
-        }
+                ul#menu li.menu-option div.menu-bubble a:hover {
+                    text-decoration: underline;
+                    background-color: #DADFE5;
+                }
+
+            ul#menu li.menu-option div.menu-bubble img {
+                width: 99%;
+                height: 99%;
+            }
+
+            ul#menu li.menu-option div.menu-bubble .spetial {
+                color: #133783;     
+            }
+
+            ul#menu li.menu-option div.menu-bubble input {
+                border: 1px solid #e2e2e2;
+                background: #CDE6FF;
+                color: #933;
+                margin: 5px 0 6px 0;
+                padding: 5px;
+                width: 150px;
+            }
 
     div.menu-bubble .float-right, 
     div.menu-bubble .float-left,
@@ -704,7 +729,7 @@ tr.pager td {
 
     /* menu */
     nav {
-        margin-bottom: 5px;
+        /*margin-bottom: 5px;*/
     }
 
     ul#menu {

@@ -11,49 +11,96 @@
     </head>
     <body>
         <header>
-            <div class="content-wrapper clear-fix">
+            <div class="content-wrapper">
                 <div class="float-left">
                     <p class="site-title">@Html.ActionLink("Have you seen me?", "Index", "Home")</p>
                 </div>
                 <div class="float-right">
-                    <section id="login">
+@*                    <section id="login">
                         @Html.Partial("_LoginPartial")
-                    </section>
+                    </section>*@
                     <nav>
                         <ul id="menu">
                             <li class="menu-option">
                                 <span>Pets</span>
                                 <div class="menu-bubble"> 
-                                    <div class="clear-fix">   
-                                        <div class="float-right">
-                                            <form>
-                                                <input type="text" placeholder="search pet"/>
-                                            </form>
+                                    <div class="blubble-content">
+                                        <div>   
+                                            <div class="float-right">
+                                                <form>
+                                                    <input type="text" placeholder="search pet"/>
+                                                </form>
+                                            </div>
+                                            <ul>
+                                                <li>@Html.ActionLink("Missing Pets", "MissingPets", "Pet")</li>
+                                                <li><a>Find an Animal Shelter</a></li>
+                                                <li><a>Read our Blog</a></li>
+                                            </ul>
                                         </div>
-                                        <ul>
-                                            <li>@Html.ActionLink("Missing Pets", "MissingPets", "Pet")</li>
-                                            <p>This is just text</p>
-                                            <li><a>Find an Animal Shelter</a></li>
-                                            <li><a>Read our Blog</a></li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <div class="float-left">
-                                            <img src="/Content/Images/pets-menu.jpg"/>
+                                        <div>
+                                            <div class="float-left">
+                                                <img src="/Content/Images/pets-menu.jpg"/>
+                                            </div>
+                                            <p><span class="spetial">Have you seen me</span> is constantly updated with reports of pets lost,
+                                            found and re-united from all over the world. Thanks to the efforts of our 
+                                            volunteer members, and the cutting edge technology of our online system, 
+                                            <span class="spetial">Have you seen me</span> is able to reunite more and more beloved Pets 
+                                            with their families. Click on any Pet to see their full details, and please do 
+                                            consider joining our network, and lending a hand.</p>
                                         </div>
-                                        <p><span class="spetial">Have you seen me</span> is constantly updated with reports of pets lost,
-                                        found and re-united from all over the world. Thanks to the efforts of our 
-                                        volunteer members, and the cutting edge technology of our online system, 
-                                        <span class="spetial">Have you seen me</span> is able to reunite more and more beloved Pets 
-                                        with their families. Click on any Pet to see their full details, and please do 
-                                        consider joining our network, and lending a hand.</p>
                                     </div>
                                 </div>
                             </li>
-                            <li class="menu-option"><span>Get Involve</span></li>
-                            <li class="menu-option"><span>About Us</span></li>
-                            <li class="menu-option"><span>Contact</span></li>
-                            <li class="menu-option"><span>Members</span></li>
+                            <li class="menu-option">
+                                <span>Get Involve</span>
+                                <div class="menu-bubble">
+                                    <ul>
+                                        <li><a>Support Us</a></li>
+                                        <li><a>Donate</a></li>
+                                        <li><a>Volunteer</a></li>
+                                        <li><a>Training</a></li>
+                                        <li><a>Find a Pet to Adopt</a></li>
+                                        <li><a>Pet adoption information</a></li>
+                                        <li><a>More about pet adoption</a></li>
+                                    </ul>
+                                    <div>
+                                        <img src="/Content/Images/get-involve-menu.jpg"/>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="menu-option">
+                                <span>About Us</span>
+                                <div class="menu-bubble">
+                                    <ul>
+                                        <li><a>Frequently Asked Questions</a></li>
+                                        <li><a>How to use this site</a></li>
+                                        <li><a>Mission and Purpose</a></li>
+                                        <li><a>Our History</a></li>
+                                        <li><a>Founders</a></li>
+                                    </ul>
+                                    <div>
+                                        <img src="/Content/Images/about-us-menu.jpg"/>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="menu-option">
+                                <span>Contact</span>
+                                <div class="menu-bubble">
+                                    <ul>
+                                        <li>@Html.ActionLink("How to reach us", "Contact", "Home")</li>
+                                        <li><a>Local Adress</a></li>
+                                        <li><a>Telephone Guide</a></li>
+                                        <li><a>Our e-mails</a></li>
+                                    </ul>
+                                    <div>
+                                        <img src="/Content/Images/contact-menu.jpg"/>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="menu-option">
+                                <span>Members</span>
+
+                            </li>
                         </ul>
                     </nav>
                 </div>
