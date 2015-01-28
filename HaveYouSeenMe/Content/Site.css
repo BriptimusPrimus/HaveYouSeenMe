@@ -5,8 +5,8 @@
 }
 
 body {
-    background-color: #fff;
-    border-top: solid 10px #000;
+    background-color: rgb(19, 55, 131);
+    border-top: solid .7em #000;
     color: #333;
     font-size: .85em;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
@@ -14,11 +14,15 @@ body {
     padding: 0;
 }
 
+header {
+    color: #CDE6FF;
+}
+
 a {
     color: #333;
     outline: none;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: .2em;
+    padding-right: .2em;
     text-decoration: underline;
 }
 
@@ -38,8 +42,8 @@ nav, section {
 
 mark {
     background-color: #a6dbed;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: .4em;
+    padding-right: .4em;
 }
 
 .float-left {
@@ -101,13 +105,13 @@ h5, h6 {
 #body {
     background-color: #efeeef;
     clear: both;
-    padding-bottom: 35px;
+    padding-bottom: 2.6em;
 }
 
     .main-content {
         background: url("../Images/accent.png") no-repeat;
-        padding-left: 10px;
-        padding-top: 30px;
+        padding-left: 1em;
+        padding-top: 2.3em;
     }
 
     .featured + .main-content {
@@ -115,12 +119,12 @@ h5, h6 {
     }
 
 header .content-wrapper {
-    padding-top: 20px; 
+    padding-top: 1.5em; 
 }
 
 footer {
     clear: both;
-    background-color: #e2e2e2;
+    background-color: #a2a2a2;
     font-size: .8em;
     height: 100px;
 }
@@ -135,12 +139,16 @@ footer {
     margin: 0;
 }
 
-.site-title a, .site-title a:hover, .site-title a:active {
+.site-title a, .site-title a:active {
     background: none;
-    color: #c8c8c8;
+    color: #CDE6FF;
     outline: none;
     text-decoration: none;
 }
+
+    .site-title a:hover {
+        color: #FC6512;
+    }
 
 
 /* login
@@ -148,7 +156,7 @@ footer {
 #login {
     display: block;
     font-size: .85em;
-    margin: 0 0 10px;
+    margin: 0 0 .8em;
     text-align: right;
 }
 
@@ -179,30 +187,84 @@ footer {
 
 /* menu
 ----------------------------------------------------------*/
+
 ul#menu {
-    font-size: 1.3em;
-    font-weight: 600;
-    margin: 0 0 5px;
-    padding: 0;
-    text-align: right;
+    margin: 0;
+    padding: 0;    
 }
 
     ul#menu li {
-        display: inline;
         list-style: none;
-        padding-left: 15px;
+    }
+    
+    ul#menu li.menu-option {
+        display: inline-block;
+        position: relative;
+        list-style: none;
+        font-size: 1.3em;
+        font-weight: 600;
+        border-radius: 7px 7px 0 0;            
+        background-color: #EEE;
+        margin: 0;
+        padding: 3px;
+        color: #777;
+        cursor: pointer;
     }
 
-        ul#menu li a {
-            background: none;
-            color: #999;
-            text-decoration: none;
+        ul#menu li.menu-option:hover {
+            color: #FC6512;
+            /*background-color: #CDE6FF;*/
+            background-color: rgb(19, 55, 131);
         }
 
-        ul#menu li a:hover {
-            color: #333;
-            text-decoration: none;
+            ul#menu li.menu-option:hover div.menu-bubble {
+                display: block;    
+            } 
+
+        ul#menu li.menu-option div.menu-bubble {
+	        position: absolute;
+            font-size: .8em;
+            /*background-color: #CDE6FF;*/ 
+            background-color: rgb(19, 55, 131); 
+            color: #FFF;
+	        top:95%; 
+            right: -4px;
+            z-index: 1;
+            width: 500px;
+            padding: 10px;
+            border-radius: 7px 0 7px 7px;
+            display: none;    
         }
+
+            ul#menu li div a {
+                color: #FC6512; 
+                text-decoration: none;   
+            }
+
+        ul#menu li.menu-option div.menu-bubble img {
+            width: 99%;
+            height: 99%;
+        }
+
+        ul#menu li.menu-option div.menu-bubble .spetial {
+            color: #CDE6FF;     
+        }
+
+        ul#menu li.menu-option div.menu-bubble input {
+            border: 1px solid #e2e2e2;
+            background: #CDE6FF;
+            color: #933;
+            margin: 5px 0 6px 0;
+            padding: 5px;
+            width: 150px;
+        }
+
+    div.menu-bubble .float-right, 
+    div.menu-bubble .float-left,
+    div.menu-bubble .float-none {
+        width: 40%;
+        padding: 1em;
+    }
 
 
 /* page elements
@@ -527,7 +589,11 @@ input[type="checkbox"].input-validation-error {
 
 /* tables
 ----------------------------------------------------------*/
-table {
+th {
+    font-size: 1.2em;
+}
+
+/*table {
     border-collapse: collapse;
     border-spacing: 0;
     margin-top: 0.75em;
@@ -584,7 +650,7 @@ td {
 
 tr.pager td {
     padding: 0 0.25em 0 0;
-}
+}*/
 
 
 /********************
@@ -716,6 +782,10 @@ tr.pager td {
     /* forms */
     input {
         width: 90%;
+    }
+
+    .field-validation-error {
+        display: block;
     }
 
     /* login page */

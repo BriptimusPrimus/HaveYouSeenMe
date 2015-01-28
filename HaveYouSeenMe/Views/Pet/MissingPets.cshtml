@@ -4,10 +4,10 @@
     ViewBag.Title = "MissingPets";
 }
 
-<h2>MissingPets</h2>
+<h2>Missing Pets</h2>
 
     @foreach (var item in Model) {
-        <div class="pet-description">
+        <div class="pet-description clear-fix">
 
 	        <div class="pet-picture">
                 <a href="@Url.Action("Display","Pet", new { id=item.PetName })"><img src="/Content/Uploads/@(item.PetName).jpg"/></a>
@@ -53,12 +53,12 @@
             background-color: #BBBBBB;
 	    }
 
-        .pet-description::after {
+        /*.pet-description::after {
             content: "";           
             clear: both;
             width: 100%;
             display: block;
-        }
+        }*/
 	
 	    .pet-picture {
 		    width: 20%;
@@ -95,7 +95,8 @@
 		    top: 92%;
             width: 100%;
             z-index: 1;
-            background-color: #ff6a00;
+            background-color: rgb(19, 55, 131);
+            color: #fff;
             display: none;
             left: 0;
 	    }
@@ -109,11 +110,17 @@
         }
 
         .pet-notes:before {
-            content:""; display:block; border-width:10px; 
-            border-style:solid; border-left-color:transparent; 
+            content:""; 
+            display:block; 
+            border-width:10px; 
+            border-style:solid; 
+            border-left-color:transparent; 
             border-right-color:transparent; 
-            border-bottom-color:#ff6a00; border-top:none; 
-            position:absolute; margin-top:-8px; left:10px;
+            border-bottom-color:rgb(19, 55, 131); 
+            border-top:none; 
+            position:absolute; 
+            margin-top:-8px; 
+            left:50px;
         }
     </style>
 }
