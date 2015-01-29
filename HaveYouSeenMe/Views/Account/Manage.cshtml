@@ -1,6 +1,6 @@
 ﻿@model HaveYouSeenMe.Models.LocalPasswordModel
 @{
-    ViewBag.Title = "Manage Account";
+    ViewBag.Title = "Member Account";
 }
 
 <hgroup class="title">
@@ -11,17 +11,22 @@
 
 <p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
 
-@if (ViewBag.HasLocalPassword)
+<h3>You do not have a local password for this site. And you don't need it. </h3>
+
+<p>All you need is a facebook account. <span class="spetial">Have you seen me?</span> members accounts are related to
+Facebook because that way is easier to our members to log in and manage their account without having to register.</p>
+
+@*@if (ViewBag.HasLocalPassword)
 {
     @Html.Partial("_ChangePasswordPartial")
 }
 else
 { 
     @Html.Partial("_SetPasswordPartial")
-}
+}*@
 
 <section id="externalLogins">
-    @Html.Action("RemoveExternalLogins")
+    @*@Html.Action("RemoveExternalLogins")*@
 
     <h3>Add an external login</h3>
     @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })

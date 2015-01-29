@@ -12,7 +12,8 @@ namespace HaveYouSeenMe.Controllers
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
-            return View();
+            //return View();
+            return RedirectToAction("MissingPets", "Pet");
         }
 
         public ActionResult About()

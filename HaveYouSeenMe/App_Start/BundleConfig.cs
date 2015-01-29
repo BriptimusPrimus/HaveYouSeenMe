@@ -29,7 +29,7 @@ namespace HaveYouSeenMe
             //bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css", "~/Content/zocial.css"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
                                     "~/Content/site.css",
-                                    "~/Content/reset.css",
+                                    //"~/Content/reset.css",
                                     "~/Content/zocial.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
