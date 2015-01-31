@@ -109,7 +109,7 @@ h5, h6 {
 }
 
     .main-content {
-        background: url("../Images/accent.png") no-repeat;
+        /*background: url("../Images/accent.png") no-repeat;*/
         padding-left: 1em;
         padding-top: 2.3em;
     }
@@ -192,6 +192,7 @@ footer {
 
 #carousel {
     height: 200px;
+    padding-top: 1em;
     overflow: hidden;
 }
 
