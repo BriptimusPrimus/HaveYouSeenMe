@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Add New Pet", "Create")
 </p>
-<table id="myTableId" class="stripe hover row-border order-column">
+<table id="data-grid" class="stripe hover row-border order-column">
     <thead>
         <tr>
             <th></th>
@@ -68,11 +68,10 @@
     @Styles.Render("~/Content/themes/table/css")
     @Scripts.Render("~/bundles/table")
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/jqueryval")
 
     <script>
         $(document).ready(function () {
-            $("#myTableId").dataTable({
+            $("#data-grid").dataTable({
                 bJQueryUI: true,
                 sPaginationType: "full_numbers",
                 "aoColumns": [ 

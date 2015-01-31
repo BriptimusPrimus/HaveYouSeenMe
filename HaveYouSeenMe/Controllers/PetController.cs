@@ -36,18 +36,16 @@ namespace HaveYouSeenMe.Controllers
             return View();
         }
 
-        //[Authorize(Users = "rbrito")]
-        //[Authorize]
-        public ActionResult Display()
+        public PartialViewResult Display()
         {
             var name = (string)RouteData.Values["id"];
             var pet = PetManager.GetByName(name);
 
             if (pet == null)
-                return RedirectToAction("NotFound");
+                return PartialView("NotFound");
 
             PetModel model = ModelsConverter.ConvertModel<PetModel>(pet);
-            return View(model);
+            return PartialView(model);
         }
 
         public ActionResult MissingPets()

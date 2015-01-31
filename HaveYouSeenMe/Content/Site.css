@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: rgb(19, 55, 131);
+    background-color: #133783;
     border-top: solid .7em #000;
     color: #333;
     font-size: .85em;
@@ -136,7 +136,10 @@ footer {
     color: #c8c8c8;
     font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
     font-size: 2.3em;
-    margin: 0;
+    margin: 0;      
+    padding-left: .8em;
+    background: url("../Images/petclaw-logo.png") no-repeat left;
+    background-size: 1em;         
 }
 
 .site-title a, .site-title a:active {
@@ -184,6 +187,149 @@ footer {
         list-style: none;
     }
 
+/* silde show
+----------------------------------------------------------*/
+
+#carousel {
+    height: 200px;
+    overflow: hidden;
+}
+
+    #carousel #slider {
+        position: relative;
+        left: 0px;
+        height: 100%;
+        width: 3232px;
+        padding: 0;
+        margin: 0;
+
+        -webkit-animation: h_slide 24s ease-out infinite;
+        -moz-animation: h_slide 24s ease-out infinite;
+        animation: h_slide 24s ease-out infinite;
+    }
+
+        #carousel #slider img {
+            padding: 0;
+            margin: 0;    
+            float: left;
+        }
+
+    @-webkit-keyframes h_slide {
+        0% {
+            left: 0; 
+        }
+        10% {
+            left: 0; 
+        }
+        16.666667% {
+            left: -404px; 
+        }
+        26.666667% {
+            left: -404px; 
+        }
+        33.333333% {
+            left: -808px; 
+        }
+        43.333333% {
+            left: -808px; 
+        }
+        50% {
+            left: -1212px; 
+        }
+        60% {
+            left: -1212px; 
+        }
+        66.666667% {
+            left: -1616px; 
+        }
+        76.666667% {
+            left: -1616px; 
+        }
+        83.333333% {
+            left: -2020px;
+        }
+        100% {
+            left: -2020px;
+        }
+    }
+
+    @-moz-keyframes h_slide {
+        0% {
+            left: 0; 
+        }
+        10% {
+            left: 0; 
+        }
+        16.666667% {
+            left: -404px; 
+        }
+        26.666667% {
+            left: -404px; 
+        }
+        33.333333% {
+            left: -808px; 
+        }
+        43.333333% {
+            left: -808px; 
+        }
+        50% {
+            left: -1212px; 
+        }
+        60% {
+            left: -1212px; 
+        }
+        66.666667% {
+            left: -1616px; 
+        }
+        76.666667% {
+            left: -1616px; 
+        }
+        83.333333% {
+            left: -2020px;
+        }
+        100% {
+            left: -2020px;
+        }
+    }
+
+    @keyframes h_slide {
+        0% {
+            left: 0; 
+        }
+        10% {
+            left: 0; 
+        }
+        16.666667% {
+            left: -404px; 
+        }
+        26.666667% {
+            left: -404px; 
+        }
+        33.333333% {
+            left: -808px; 
+        }
+        43.333333% {
+            left: -808px; 
+        }
+        50% {
+            left: -1212px; 
+        }
+        60% {
+            left: -1212px; 
+        }
+        66.666667% {
+            left: -1616px; 
+        }
+        76.666667% {
+            left: -1616px; 
+        }
+        83.333333% {
+            left: -2020px;
+        }
+        100% {
+            left: -2020px;
+        }
+    }
 
 /* menu
 ----------------------------------------------------------*/
@@ -214,37 +360,41 @@ ul#menu {
         color: #777;        
     }
 
-        ul#menu li.menu-option span {
+        ul#menu li.menu-option span.select {
             cursor: pointer;
         }
 
         ul#menu li.menu-option:hover {
             color: #FC6512;
-            /*background-color: #CDE6FF;*/
-            /*background-color: rgb(19, 55, 131);*/
             background-color: #DADFE5;
         }
 
             ul#menu li.menu-option:hover div.menu-bubble {
-                display: block;    
+                background-color: rgba(218, 223, 229, .9);
+                max-width: 500px;
+                max-height: 500px;
+                transition :all .5s ease-out;
+                z-index: 2;
             } 
 
         ul#menu li.menu-option div.menu-bubble {
 	        position: absolute;
-            font-size: .8em;
-            /*background-color: #CDE6FF;*/ 
-            /*background-color: rgb(19, 55, 131);*/ 
-            background-color: #DADFE5;
-            color: #666;
 	        top:95%;             
-            z-index: 1;            
-            padding: .9em;
-            border-radius: 7px 0 7px 7px;
-            display: none; 
+            border-radius: 7px 0 7px 7px;            
             right: 0px;
+            overflow: hidden;
+            font-size: .8em;
+            color: #666;
+            background-color: #EEE;
+            max-width: 0;    
+            max-height: 0;
         }
 
-            ul#menu li.menu-option div.menu-bubble ul{
+            ul#menu li.menu-option div.menu-bubble {
+                padding: .9em;
+            }
+
+            ul#menu li.menu-option div.menu-bubble ul {
                 white-space: nowrap; 
                 padding: 0 1em 1em;  
                 font-size: 1.2em;
@@ -254,7 +404,7 @@ ul#menu {
                 width: 400px;
             }
 
-            ul#menu li.menu-option div.menu-bubble a {
+            ul#menu li.menu-option div.menu-bubble a:not(.zocial) {
                 color: #FC6512;                 
                 text-decoration: none; 
                 cursor: pointer;
@@ -262,18 +412,19 @@ ul#menu {
                 margin-top: .5em; 
             }
 
-                ul#menu li.menu-option div.menu-bubble a:hover {
+                ul#menu li.menu-option div.menu-bubble a:not(.zocial):hover {
                     text-decoration: underline;
                     background-color: #DADFE5;
                 }
 
             ul#menu li.menu-option div.menu-bubble img {
-                width: 99%;
-                height: 99%;
+                width: 100%;
+                height: 100%;
             }
 
             ul#menu li.menu-option div.menu-bubble .spetial {
                 color: #133783;     
+                font-weight: bold;
             }
 
             ul#menu li.menu-option div.menu-bubble input {
@@ -288,7 +439,7 @@ ul#menu {
     div.menu-bubble .float-right, 
     div.menu-bubble .float-left,
     div.menu-bubble .float-none {
-        width: 40%;
+        width: 42%;
         padding: 1em;
     }
 

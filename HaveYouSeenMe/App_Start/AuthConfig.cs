@@ -26,7 +26,7 @@ namespace HaveYouSeenMe
                 appId: "845846355434854",
                 appSecret: "ae244f2521a967d3852738ef983e4e96");
 
-            OAuthWebSecurity.RegisterGoogleClient();
+            //OAuthWebSecurity.RegisterGoogleClient();
         }
     }
 }

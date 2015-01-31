@@ -16,19 +16,16 @@
                     <p class="site-title">@Html.ActionLink("Have you seen me?", "Index", "Home")</p>
                 </div>
                 <div class="float-right">
-@*                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>*@
                     <nav>
                         <ul id="menu">
                             <li class="menu-option">
-                                <span>Pets</span>
+                                <span class="select">Pets</span>
                                 <div class="menu-bubble"> 
                                     <div class="blubble-content">
                                         <div>   
                                             <div class="float-right">
                                                 <form>
-                                                    <input type="text" placeholder="search pet"/>
+                                                    <input type="text" id="search-pet" placeholder="search pet"/>
                                                 </form>
                                             </div>
                                             <ul>
@@ -52,7 +49,7 @@
                                 </div>
                             </li>
                             <li class="menu-option">
-                                <span>Get Involve</span>
+                                <span class="select">Get Involve</span>
                                 <div class="menu-bubble">
                                     <ul>
                                         <li><a>Support Us</a></li>
@@ -64,43 +61,53 @@
                                         <li><a>More about pet adoption</a></li>
                                     </ul>
                                     <div>
-                                        <img src="/Content/Images/get-involve-menu.jpg"/>
+                                        <img src="/Content/Images/dog-cat-logo.jpg"/>
                                     </div>
                                 </div>
                             </li>
                             <li class="menu-option">
-                                <span>About Us</span>
+                                <span class="select">About Us</span>
                                 <div class="menu-bubble">
-                                    <ul>
-                                        <li><a>Frequently Asked Questions</a></li>
-                                        <li><a>How to use this site</a></li>
-                                        <li><a>Mission and Purpose</a></li>
-                                        <li><a>Our History</a></li>
-                                        <li><a>Founders</a></li>
-                                    </ul>
                                     <div>
-                                        <img src="/Content/Images/about-us-menu.jpg"/>
+                                        <ul>
+                                            <li><a>Frequently Asked Questions</a></li>
+                                            <li><a>How to use this site</a></li>
+                                            <li><a>Mission and Purpose</a></li>
+                                            <li><a>Our History</a></li>
+                                            <li><a>Founders</a></li>
+                                        </ul>
+                                        <div>
+                                            <img src="/Content/Images/about-us-menu.jpg"/>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
                             <li class="menu-option">
-                                <span>Contact</span>
+                                <span class="select">Contact</span>
                                 <div class="menu-bubble">
-                                    <ul>
-                                        <li>@Html.ActionLink("How to reach us", "Contact", "Home")</li>
-                                        <li><a>Local Adress</a></li>
-                                        <li><a>Telephone Guide</a></li>
-                                        <li><a>Our e-mails</a></li>
-                                    </ul>
+                                    <div class="blubble-content">
+                                        
+                                        <div class="float-left">
+                                            <ul>
+                                                <li>@Html.ActionLink("How to reach us", "Contact", "Home")</li>
+                                                <li><a>Local Adress</a></li>
+                                                <li><a>Telephone Guide</a></li>
+                                                <li><a>Our e-mails</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="float-right">
+                                            <img src="/Content/Images/contact-menu.jpg"/>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="menu-option">
+                                <span class="select">Members</span>
+                                <div class="menu-bubble">
                                     <div>
-                                        <img src="/Content/Images/contact-menu.jpg"/>
+                                        @Html.Partial("_LoginPartial")
                                     </div>
-                                </div>
-                            </li>
-                            <li class="menu-option">
-                                <span>Members</span>
-                                <div class="menu-bubble">
-                                    @Html.Partial("_LoginPartial")
                                 </div>
                             </li>
                         </ul>
@@ -109,6 +116,20 @@
             </div>
         </header>
         <div id="body">
+            <div class="content-wrapper">
+                <div id="carousel">
+                    <div id="slider">
+                        <img src="/Content/Images/animals-q-g-404-200-8.jpg"/>
+                        <img src="/Content/Images/animals-q-g-404-200-9.jpg"/>
+                        <img src="/Content/Images/cats-q-g-404-200-1.jpg"/>
+                        <img src="/Content/Images/animals-q-g-404-200-6.jpg"/>
+                        <img src="/Content/Images/animals-q-g-404-200-10.jpg"/> 
+                        <img src="/Content/Images/animals-q-g-404-200-8.jpg"/>
+                        <img src="/Content/Images/animals-q-g-404-200-9.jpg"/>
+                        <img src="/Content/Images/cats-q-g-404-200-1.jpg"/>                                               
+                    </div>
+                </div>
+            </div>
             @RenderSection("featured", required: false)
             <section class="content-wrapper main-content clear-fix">
                 @RenderBody()
@@ -124,5 +145,19 @@
 
         @Scripts.Render("~/bundles/jquery")
         @RenderSection("scripts", required: false)
+
+        <script>
+
+            $(document).ready(function () {
+                $('#search-pet').on('keyup click', function () {
+                    if (!$("#missing-pets").length) {
+                        //alert("there is no missing pets list");
+                        window.location = "/Pet/MissingPets";
+                    }
+                });
+            });
+
+        </script>
+
     </body>
 </html>
