@@ -8,6 +8,11 @@
     <h1>@ViewBag.Title.</h1>
 </hgroup>
 
+<section class="social" id="socialLoginForm">
+    <h2>Log in with your facebook account.</h2>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+</section>
+
 <section id="loginForm">
 <h2>All you need is a facebook account to log in.</h2>
 
@@ -19,11 +24,6 @@ the comunity is able to send you a message with any information about your pets.
 <h3>Also, if you find a pet that is reported as missing, try sending a message to the owner
 on the @Html.ActionLink("Missing Pets", "MissingPets", "Pet") section.</h3>
 
-</section>
-
-<section class="social" id="socialLoginForm">
-    <h2>Log in with your facebook account.</h2>
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
 </section>
 
 @section Scripts {

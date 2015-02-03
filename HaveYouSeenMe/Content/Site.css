@@ -138,8 +138,17 @@ footer {
     font-size: 2.3em;
     margin: 0;      
     padding-left: .8em;
-    background: url("../Images/petclaw-logo.png") no-repeat left;
-    background-size: 1em;         
+    /*background: url("../Images/petclaw-logo.png") no-repeat left;*/
+    /*background-size: 1em;*/         
+}
+
+.site-title a:before {
+    content: "";
+    background: url("../Images/petclaw-logo.png") no-repeat;
+    background-size: contain;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
 }
 
 .site-title a, .site-title a:active {
@@ -149,8 +158,12 @@ footer {
     text-decoration: none;
 }
 
-    .site-title a:hover {
+    .site-title:hover a {
         color: #FC6512;
+    }
+
+    .site-title:hover a:before {
+        background-image: url("../Images/petclaw-hover.png");
     }
 
 
@@ -570,7 +583,8 @@ aside {
 
 /* login page */
 #loginForm {
-    border-right: solid 2px #c8c8c8;
+    border-left: solid 2px #c8c8c8;
+    padding-left: 15px;
     float: left;
     width: 55%;
 }
@@ -603,7 +617,7 @@ aside {
     }
 
 #socialLoginForm {
-    margin-left: 40px;
+    margin-left: 0;
     float: left;
     width: 40%;
 }
@@ -845,8 +859,11 @@ tr.pager td {
 
     /* logo */
     header .site-title {
-        margin: 10px;
+        margin: auto;
         text-align: center;
+        font-size: 2em;
+        height: 1em;
+        overflow: hidden;
     }
 
     /* login */
@@ -968,9 +985,10 @@ tr.pager td {
 
     /* login page */
     #loginForm {
-        border-right: none;
+        border-left: none;
         float: none;
         width: auto;
+        padding-left: 0;
     }
 
         #loginForm .validation-error {
@@ -979,7 +997,6 @@ tr.pager td {
         }
 
     #socialLoginForm {
-        margin-left: 0;
         float: none;
         width: auto;
     }
@@ -1017,6 +1034,70 @@ tr.pager td {
         background-image: -webkit-linear-gradient(left, #e80c4d 0%, #e6507d 100%);
         background-image: linear-gradient(left, #e80c4d 0%, #e6507d 100%);
         color: #fff;
+    }
+
+    /* menu
+    ----------------------------------------------------------*/
+
+    ul#menu li.menu-option div.menu-bubble {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 6.8em;
+    }
+
+        ul#menu li.menu-option:hover div.menu-bubble {
+            max-height: 400px; 
+            margin: auto;               
+        }
+
+    ul#menu .float-left {
+        float: left;
+    }
+
+    ul#menu .float-right {
+        float: right;
+    }
+
+    ul#menu li.menu-option {
+        width: 2em;
+        height: 1em;
+        font-size: 1.2em;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        margin-bottom: -.2em;
+    }
+
+    /*icons*/
+    .menu-pets,
+    .menu-get-involve,
+    .menu-about,
+    .menu-contact,
+    .menu-members {
+        width: 16px;
+        height: 16px;
+        background-image: url("themes/base/images/ui-icons_222222_256x240.png");
+        background-repeat: no-repeat;
+        margin: auto;
+    }
+    .menu-pets{
+        background-position: 0 -112px;
+    }
+    .menu-get-involve {
+        background-position: -208px -112px;
+    }
+    .menu-about {
+        background-position: -16px -144px;
+    }
+    .menu-contact {
+        background-position: -80px -96px;
+    }
+    .menu-members {
+        background-position: -144px -96px;
+    }
+
+    ul#menu li.menu-option span.select {
+        display: none;
     }
 
 }
