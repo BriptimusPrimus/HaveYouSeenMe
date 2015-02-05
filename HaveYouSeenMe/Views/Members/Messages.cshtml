@@ -24,7 +24,7 @@
     <tbody>
 
     @foreach (var item in Model) {
-        <tr id="message-row-@item.MessageID" class="message-row">
+        <tr class="message-row" data-message-id="@item.MessageID">
             <td>
                 @Html.DisplayFor(modelItem => item.Sender)
             </td>
@@ -34,8 +34,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.MessageDate)
             </td>
-            <td>
-                @Html.ActionLink("Delete This Message", "Delete", new { /* id=item.PrimaryKey */ })
+            <td class="delete-link">
+                @*@Html.ActionLink("Delete This Message", "DeleteMessage", new { id=item.MessageID })*@
+                @using (Html.BeginForm("DeleteMessage", "Members", new { id = item.MessageID }, FormMethod.Post))
+                { 
+                    <input type="submit" value="Delete Message" />    
+                }
             </td>
         </tr>
     }
@@ -43,77 +47,94 @@
     </tbody>
 </table>
 
-<div id="opaque-background"></div>
-
-<div id="inbox-container">
-
-@foreach (var item in Model) { 
-    <div id="message-details-@item.MessageID">
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.MessageDate)
+@foreach (var item in Model)
+{ 
+<div id="message-details-@item.MessageID" class="message-details">
+    <div class="inner-container">
+        <div class="float-right">
+            <button type="button" value="close" id="close-message-@item.MessageID" class="close-popup">X</button>
         </div>
-        <div class="display-field">
-            @Html.DisplayFor(modelItem => item.MessageDate)
+        <div>
+            <div class="display-label">
+                 @Html.DisplayNameFor(model => model.MessageDate):
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(modelItem => item.MessageDate)
+            </div>
         </div>
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.Sender)
+        <div>
+            <div class="display-label">
+                 @Html.DisplayNameFor(model => model.Sender):
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(modelItem => item.Sender)
+            </div>
         </div>
-        <div class="display-field">
-            @Html.DisplayFor(modelItem => item.Sender)
+        <div>
+            <div class="display-label">
+                 @Html.DisplayNameFor(model => model.Subject):
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(modelItem => item.Subject)
+            </div>
         </div>
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.Subject)
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(modelItem => item.Subject)
-        </div>
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.Message)
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(modelItem => item.Message)
+        <div class="message-text">
+@*            <div class="display-label">
+                 @Html.DisplayNameFor(model => model.Message)
+            </div>*@
+            <div class="display-field">
+                @Html.DisplayFor(modelItem => item.Message)
+            </div>
         </div>
     </div>
-}
-
 </div>
+}
 
 @section Styles {
     <style>
 
-        #inbox-container {
-            position: relative;
+        #data-grid .message-row td:not(.delete-link) {
+            cursor: pointer;    
         }
 
-        /*#message-details {
+        .message-details {
             position: fixed;
-            top: 10em;
-            left: 50%;
-            width: 30em;
-            min-height: 20em;
-            margin-left: -15em;
-            background-color: #E9F5FE;
-            z-index: 101; 
-            border-radius: 10px 10px 7px 55px;  
-            overflow: hidden;
-            padding: 2em;            
-            transition :all .2s ease-out;
-        }
-
-            #message-details:empty {
-                border-radius:0;  
-                padding: 0;
-                width: 0;
-                min-height: 0;
-            }*/
-
-        #opaque-background {
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
             background-color: rgba(0,0,0,0.3);
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            z-index: 100;
-            display: none;            
+            z-index: 101;
+            display: none;
         }
+
+            .message-details .inner-container {
+                background-color: #FFF;
+                border-radius: 10px 10px 10px 10px;
+                position: static;
+                margin-top: 7em;
+                margin-left: auto;
+                margin-right: auto;   
+                width: 60%;
+                padding: 5%;
+                min-height: 30em;
+            }
+
+                .message-details .inner-container .display-label {
+                    display: inline-block;
+                    font-weight: bold;
+                    font-size: 1.2em;                    
+                    margin-top: 1em;
+                }
+
+                .message-details .inner-container .display-field {
+                    display: inline-block;   
+                    color: #333; 
+                    font-size: 1.1em;                    
+                }
+
+                .message-details .inner-container .message-text {
+                    margin-top: 1.1em;
+                }
 
     </style>
 }
@@ -135,6 +156,27 @@
                                 { "bSortable": false }
                 ],
                 "sDom": '<"top"p>frt<"bottom"p><"clear">'
+            });
+
+            $("#data-grid").on("click", "td:not(.delete-link)", function (e) {
+                var row = $(this).parent();
+                var messageId = ["#message-details-", row.data("message-id")].join(""); 
+
+                var mailBox = $(messageId).fadeIn().css("display", "inline-block");
+                var btnClose = $(["#close-message-", row.data("message-id")].join(""));
+
+                var CloseFn = function (event) {
+                    event.stopPropagation();
+
+                    //make the opaque background invisible
+                    //and unbind the click event
+                    mailBox.fadeOut().css("display", "inline-block").unbind("click");
+                    btnClose.unbind("click");
+                };
+
+                mailBox.bind("click", CloseFn);
+                btnClose.bind("click", CloseFn);
+
             });
         });
     </script>

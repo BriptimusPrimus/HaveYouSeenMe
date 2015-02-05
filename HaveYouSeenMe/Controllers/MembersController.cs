@@ -204,7 +204,7 @@ namespace HaveYouSeenMe.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            //instruct the business layer to persist the new object
+            //instruct the business layer to delete the object
             try
             {
                 PetManager.Delete(id);
@@ -275,6 +275,29 @@ namespace HaveYouSeenMe.Controllers
                 ModelsConverter.ConvertList<MessageModel>(messages);
 
             return View(list);
+        }
+
+        [HttpPost, ActionName("DeleteMessage")]
+        public ActionResult DeleteMessageConfirmed(int id)
+        {
+            //instruct the business layer to persist the new object
+            try
+            {
+                MessageManager.Delete(id);
+            }
+            catch (ApplicationException Ex)
+            {
+                //could not delete data
+                ModelState.AddModelError("", Ex.Message);
+                return View();
+            }
+            catch (Exception Ex)
+            {
+                ModelState.AddModelError("", "Unknown Error");
+            }
+
+            //succeed or not
+            return RedirectToAction("Messages");
         }
 
         public ActionResult NotFound()

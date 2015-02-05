@@ -1,28 +1,28 @@
 ﻿@model HaveYouSeenMe.Models.LoginModel
 
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = "Log in Page";
 }
 
 <hgroup class="title">
     <h1>@ViewBag.Title.</h1>
 </hgroup>
 
-<section class="social" id="socialLoginForm">
+<section class="social login-section" id="socialLoginForm">
     <h2>Log in with your facebook account.</h2>
     @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
 </section>
 
-<section id="loginForm">
-<h2>All you need is a facebook account to log in.</h2>
+<section id="loginForm" class="login-section">
+    <h2>All you need is a facebook account to log in.</h2>
 
-<h3>Become a member by using your facebook account to register your missing pets. Every member in 
-the comunity is able to send you a message with any information about your pets.</h3>
+    <h3>Become a member by using your facebook account to register your missing pets. Every member in 
+    the comunity is able to send you a message with any information about your pets.</h3>
 
-<h3>Please don't forget to Update your pet data once your found them.</h3>
+    <h3>Please don't forget to Update your pet data once your found them.</h3>
 
-<h3>Also, if you find a pet that is reported as missing, try sending a message to the owner
-on the @Html.ActionLink("Missing Pets", "MissingPets", "Pet") section.</h3>
+    <h3>Also, if you find a pet that is reported as missing, try sending a message to the owner
+    on the @Html.ActionLink("Missing Pets", "MissingPets", "Pet") section.</h3>
 
 </section>
 
