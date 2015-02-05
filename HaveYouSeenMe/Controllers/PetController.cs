@@ -51,7 +51,8 @@ namespace HaveYouSeenMe.Controllers
         public ActionResult MissingPets()
         {
             //get the list of pets from business layer
-            IEnumerable<Pet> missingPets = PetManager.GetMissing();
+            IEnumerable<Pet> missingPets = PetManager.GetMissing()
+                .OrderByDescending(x => x.LastSeenOn);
 
             //convert items of the list to viewmodel objects
             IEnumerable<PetModel> list = 

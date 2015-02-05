@@ -46,7 +46,7 @@
           <Key>
             <PropertyRef Name="MessageID" />
           </Key>
-          <Property Name="MessageID" Type="int" Nullable="false" />
+          <Property Name="MessageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="MessageDate" Type="datetime" Nullable="false" />
           <Property Name="From" Type="varchar" Nullable="false" MaxLength="150" />
@@ -262,7 +262,7 @@
           <Key>
             <PropertyRef Name="MessageID" />
           </Key>
-          <Property Name="MessageID" Type="Int32" Nullable="false" />
+          <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="MessageDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="From" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />

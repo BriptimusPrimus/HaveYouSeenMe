@@ -78,7 +78,7 @@
             @Html.LabelFor(model => model.StatusID)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.StatusID)
+            @Html.DropDownListFor(model => model.StatusID, new SelectList(ViewBag.StatusList, "StatusID", "Description", Model.StatusID))
             @Html.ValidationMessageFor(model => model.StatusID)
         </div>
 
@@ -86,7 +86,6 @@
             @Html.LabelFor(model => model.LastSeenOn)
         </div>
         <div class="editor-field">
-            <p>@Html.DisplayFor(model => model.LastSeenOn)</p>
             @Html.TextBoxFor(m => m.LastSeenOn,
                 new 
                 { 

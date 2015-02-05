@@ -14,19 +14,28 @@ namespace HaveYouSeenMe.Controllers
 {
     public class MessageController : Controller
     {
-        private IPetDao Dao;
+        private IPetDao petDao;
         PetManagement PetManager;
+
+        private IMessageDao messageDao;
+        MessageManagement MessageManager;
 
         public MessageController()
         {
-            Dao = new PetDao();
-            PetManager = new PetManagement(Dao);
+            petDao = new PetDao();
+            PetManager = new PetManagement(petDao);
+
+            messageDao = new MessageDao();
+            MessageManager = new MessageManagement(messageDao);
         }
 
-        public MessageController(IPetDao petDao)
+        public MessageController(IPetDao petDao, IMessageDao messageDao)
         {
-            Dao = petDao;
-            PetManager = new PetManagement(Dao);
+            this.petDao = petDao;
+            PetManager = new PetManagement(this.petDao);
+
+            this.messageDao = messageDao;
+            MessageManager = new MessageManagement(this.messageDao);
         }
 
         //
@@ -52,10 +61,12 @@ namespace HaveYouSeenMe.Controllers
             {
                 model.Message = Sanitizer.GetSafeHtmlFragment(model.Message);
 
-                //retreive owner e-mail                
+                //retreive owner e-mail and ID
                 try
                 {
-                    model.To = GetOwnerEmail(model.PetName);
+                    UserProfile usr = GetPetOwner(model.PetName);
+                    model.To = usr.Email;
+                    model.UserID = usr.UserId;
                 }
                 catch 
                 {
@@ -63,16 +74,40 @@ namespace HaveYouSeenMe.Controllers
                     return View(model);
                 }
 
-                if (SendGoogleMail(model))
+                ////try sending an e-mail message
+                //if (SendGoogleMail(model))
+                //{
+                //    return RedirectToAction("ThankYou");
+                //}
+                //else
+                //{ 
+                //    //Something went wrong with the e-mail
+                //    ModelState.AddModelError("", "There was a problem trying to send the message, please try later");
+                //    return View(model);
+                //}
+
+                //convert the view model to data model
+                Message message = model.ToDataModel();
+
+                //try sending new message
+                try 
                 {
-                    return RedirectToAction("ThankYou");
+                    message = MessageManager.SendNew(message);
                 }
-                else
-                { 
-                    //Something went wrong with the e-mail
-                    ModelState.AddModelError("", "There was a problem trying to send the e-mail message, try later");
+                catch (ApplicationException Ex)
+                {
+                    //could not persist new data
+                    ModelState.AddModelError("", Ex.Message);
                     return View(model);
                 }
+                catch (Exception Ex)
+                {
+                    ModelState.AddModelError("", "Unknown Error");
+                    return View(model);
+                }
+
+                //succeed
+                return RedirectToAction("ThankYou");
             }
 
             ModelState.AddModelError("", "One or more errors were found");            
@@ -89,13 +124,13 @@ namespace HaveYouSeenMe.Controllers
             return View();
         }
 
-        private string GetOwnerEmail(string PetName)
+        private UserProfile GetPetOwner(string PetName)
         {
             //get pet from data
             var pet = PetManager.GetByName(PetName);
 
-            //retreive owner and owner e-mail
-            return pet.UserProfile.Email;
+            //retreive owner
+            return pet.UserProfile;
         }
 
         private bool SendGoogleMail(MessageModel model) 

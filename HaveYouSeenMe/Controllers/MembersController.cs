@@ -15,19 +15,28 @@ namespace HaveYouSeenMe.Controllers
     [Authorize]
     public class MembersController : Controller
     {
-        private IPetDao Dao;
+        private IPetDao petDao;
         PetManagement PetManager;
+
+        private IMessageDao messageDao;
+        MessageManagement MessageManager;
 
         public MembersController()
         {
-            Dao = new PetDao();
-            PetManager = new PetManagement(Dao);
+            petDao = new PetDao();
+            PetManager = new PetManagement(petDao);
+
+            messageDao = new MessageDao();
+            MessageManager = new MessageManagement(messageDao);
         }
 
-        public MembersController(IPetDao petDao)
+        public MembersController(IPetDao petDao, IMessageDao messageDao)
         {
-            Dao = petDao;
-            PetManager = new PetManagement(Dao);
+            this.petDao = petDao;
+            PetManager = new PetManagement(petDao);
+
+            this.messageDao = messageDao;
+            MessageManager = new MessageManagement(this.messageDao);
         }
 
         //
@@ -131,6 +140,8 @@ namespace HaveYouSeenMe.Controllers
 
             //convert to view model
             PetModel model = ModelsConverter.ConvertModel<PetModel>(pet);
+
+            ViewBag.StatusList = PetManager.StatusList();
 
             return View(model);        
         }
@@ -245,6 +256,25 @@ namespace HaveYouSeenMe.Controllers
             }
 
             return RedirectToAction("Details", new { id = model.PetID });
+        }
+
+        //
+        // GET: /Members/Messages
+
+        public ActionResult Messages()
+        {
+            //Get current user
+            var usrName = User.Identity.Name;
+
+            //get the list of user messages from business layer
+            IEnumerable<Message> messages = MessageManager.GetUserMessages(usrName)
+                .OrderByDescending(x => x.MessageDate);
+
+            //convert items of the list to viewmodel objects
+            IEnumerable<MessageModel> list =
+                ModelsConverter.ConvertList<MessageModel>(messages);
+
+            return View(list);
         }
 
         public ActionResult NotFound()

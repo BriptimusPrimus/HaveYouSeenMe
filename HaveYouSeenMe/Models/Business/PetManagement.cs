@@ -48,6 +48,15 @@ namespace HaveYouSeenMe.Models.Business
                 throw new ApplicationException("Pet name is required");
             }
 
+            //pet name must be unique
+            if (this.GetByName(pet.PetName) != null)
+            {
+                string errMsg = string.Format
+                    ("There is already a Pet named {0}. Please, choose another name for your pet.", 
+                        pet.PetName);
+                throw new ApplicationException(errMsg);
+            }
+
             //make years or months have a value of 0 if the other one is set
             if (pet.PetAgeYears == null && pet.PetAgeMonths != null)
             {
@@ -234,6 +243,13 @@ namespace HaveYouSeenMe.Models.Business
             {
                 return new Pet[0];
             }
+            return list;
+        }
+
+        public IEnumerable<Status> StatusList()
+        {
+            IEnumerable<Status> list = null;
+            list = Dao.GetStatusList();
             return list;
         }
 

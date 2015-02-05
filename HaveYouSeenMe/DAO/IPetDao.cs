@@ -18,5 +18,6 @@ namespace HaveYouSeenMe.DAO
         UserProfile GetUserByName(string UserName);
         Status GetStatus(string description);
         Status GetStatus(int id);
+        IEnumerable<Status> GetStatusList();
     }
 }

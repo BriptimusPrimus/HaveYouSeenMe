@@ -25,7 +25,7 @@ namespace HaveYouSeenMe.Models
         [Range(0, int.MaxValue, ErrorMessage = "The value must be 0 or greater than 0")]
         public int? PetAgeMonths { get; set; }
 
-        [Display(Name = "Status ID:")]
+        [Display(Name = "Status:")]
         public int StatusID { get; set; }
 
         [Display(Name = "Last Seen On:")]

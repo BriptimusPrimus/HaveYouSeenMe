@@ -9,6 +9,9 @@ namespace HaveYouSeenMe.DAO
 {
     public interface IMessageDao : IDao<Message>
     {
+        Message GetMessageById(int id);
         IEnumerable<Message> GetMessages();
+        IEnumerable<Message> GetUserMessages(int id);
+        IEnumerable<Message> GetUserMessages(string UserName);
     }
 }

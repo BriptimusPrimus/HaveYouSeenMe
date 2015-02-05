@@ -1,0 +1,141 @@
+﻿@model IEnumerable<HaveYouSeenMe.Models.MessageModel>
+
+@{
+    ViewBag.Title = "Messages";
+}
+
+<h2>Inbox</h2>
+
+<table id="data-grid" class="stripe hover row-border order-column">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Sender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MessageDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+    @foreach (var item in Model) {
+        <tr id="message-row-@item.MessageID" class="message-row">
+            <td>
+                @Html.DisplayFor(modelItem => item.Sender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MessageDate)
+            </td>
+            <td>
+                @Html.ActionLink("Delete This Message", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+    </tbody>
+</table>
+
+<div id="opaque-background"></div>
+
+<div id="inbox-container">
+
+@foreach (var item in Model) { 
+    <div id="message-details-@item.MessageID">
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.MessageDate)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(modelItem => item.MessageDate)
+        </div>
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Sender)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(modelItem => item.Sender)
+        </div>
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Subject)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(modelItem => item.Subject)
+        </div>
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Message)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(modelItem => item.Message)
+        </div>
+    </div>
+}
+
+</div>
+
+@section Styles {
+    <style>
+
+        #inbox-container {
+            position: relative;
+        }
+
+        /*#message-details {
+            position: fixed;
+            top: 10em;
+            left: 50%;
+            width: 30em;
+            min-height: 20em;
+            margin-left: -15em;
+            background-color: #E9F5FE;
+            z-index: 101; 
+            border-radius: 10px 10px 7px 55px;  
+            overflow: hidden;
+            padding: 2em;            
+            transition :all .2s ease-out;
+        }
+
+            #message-details:empty {
+                border-radius:0;  
+                padding: 0;
+                width: 0;
+                min-height: 0;
+            }*/
+
+        #opaque-background {
+            background-color: rgba(0,0,0,0.3);
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 100;
+            display: none;            
+        }
+
+    </style>
+}
+
+@section Scripts {
+    @Styles.Render("~/Content/themes/table/css")
+    @Scripts.Render("~/bundles/table")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $("#data-grid").dataTable({
+                bJQueryUI: true,
+                sPaginationType: "full_numbers",
+                "aoColumns": [ 
+                                null,
+                                null, 
+                                { "sSortDataType": "dom-text", "sType": "date" },
+                                { "bSortable": false }
+                ],
+                "sDom": '<"top"p>frt<"bottom"p><"clear">'
+            });
+        });
+    </script>
+}

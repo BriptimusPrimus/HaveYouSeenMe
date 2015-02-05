@@ -53,7 +53,7 @@ CREATE TABLE [dbo].[PetPhoto]
 
 CREATE TABLE [dbo].[Message]
 (
-    [MessageID] INT NOT NULL,
+    [MessageID] INT NOT NULL IDENTITY(1,1),
     [UserId] INT NOT NULL,
     [MessageDate] DATETIME NOT NULL,
     [From] VARCHAR(150) NOT NULL,

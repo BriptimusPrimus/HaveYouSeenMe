@@ -41,7 +41,7 @@ namespace HaveYouSeenMe.DAO
         public override void Delete(Pet entity)
         {
             Context.Pets.Remove(entity);
-            Context.SaveChanges();            
+            Context.SaveChanges();
         }
 
         public Pet GetPetById(int id)
@@ -122,5 +122,13 @@ namespace HaveYouSeenMe.DAO
             s = Context.Status.Find(id);
             return s;
         }
+
+        public IEnumerable<Status> GetStatusList() 
+        {
+            IEnumerable<Status> result = null;
+            result = Context.Status;
+            return result.ToArray();
+        }
+
     }
 }

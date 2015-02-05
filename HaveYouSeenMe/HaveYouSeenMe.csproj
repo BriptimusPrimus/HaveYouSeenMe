@@ -183,6 +183,7 @@
     <Compile Include="DAO\IPetType.cs" />
     <Compile Include="DAO\ISeting.cs" />
     <Compile Include="DAO\IStatus.cs" />
+    <Compile Include="DAO\MessageDao.cs" />
     <Compile Include="DAO\ObjectContextManager.cs" />
     <Compile Include="DAO\PetDao.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Business\EFRepository.cs" />
     <Compile Include="Models\Business\IRepository.cs" />
+    <Compile Include="Models\Business\MessageManagement.cs" />
     <Compile Include="Models\Business\PetManagement.cs" />
     <Compile Include="Models\DataModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -415,6 +417,7 @@
     <Content Include="Views\Members\Create.cshtml" />
     <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Views\Members\Delete.cshtml" />
+    <Content Include="Views\Members\Messages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Uploads\" />
