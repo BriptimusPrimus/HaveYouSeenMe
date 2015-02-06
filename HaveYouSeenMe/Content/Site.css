@@ -389,7 +389,7 @@ ul#menu {
                 max-height: 500px;
                 transition :all .5s ease-out;
                 z-index: 2;
-            } 
+            }
 
         ul#menu li.menu-option div.menu-bubble {
 	        position: absolute;
@@ -783,6 +783,11 @@ input[type="checkbox"].input-validation-error {
 ----------------------------------------------------------*/
 th {
     font-size: 1.2em;
+}
+
+div.dataTables_wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 
 /*table {
