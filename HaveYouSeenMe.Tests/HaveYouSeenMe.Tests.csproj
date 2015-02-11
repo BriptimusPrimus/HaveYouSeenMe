@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="Business\PetManagementTest.cs" />
     <Compile Include="Controllers\PetControllerTest.cs" />
+    <Compile Include="Controllers\MembersControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Routes\RoutesTest.cs" />
