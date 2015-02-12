@@ -105,7 +105,7 @@ namespace HaveYouSeenMe.Tests.Controllers
             var result = _controller.Display() as PartialViewResult;
 
             // Assert
-            // The action method returned an action result
+            // The action method returned partial view result
             Assert.IsNotNull(result);
             // The redirection actually happened
             Assert.IsInstanceOfType(result, typeof(PartialViewResult));
