@@ -211,6 +211,7 @@
       <DependentUpon>DataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\FullNameAttribute.cs" />
+    <Compile Include="Models\jQueryDataTableParamModel.cs" />
     <Compile Include="Models\Message.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
