@@ -30,7 +30,7 @@ namespace HaveYouSeenMe.Models
 
         [Display(Name = "Last Seen On:")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
-        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]        
         [DataType(DataType.Date)]
         public System.DateTime? LastSeenOn { get; set; }
 
@@ -57,6 +57,15 @@ namespace HaveYouSeenMe.Models
             {
                 return this.PetAgeYears + " - " + this.PetAgeMonths;
             } 
+        }
+
+        //A formated string date suited for javascript code
+        public string LastSeenOnFormated 
+        {
+            get 
+            {
+                return String.Format("{0:yyyy-MM-dd}", this.LastSeenOn);
+            }
         }
 
         public bool GetValues(Object obj) 
