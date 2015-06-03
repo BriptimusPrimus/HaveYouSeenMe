@@ -1,8 +1,9 @@
 define(
     ["view-renderer", 
     "pet-details-presenter",
-    "pet-edit-presenter"], 
-    function(renderer, petDetails, petEdit) {
+    "pet-edit-presenter", 
+    "pet-create-presenter"], 
+    function(renderer, petDetails, petEdit, petCreate) {
 
         var petsList = {}, 
             table,
@@ -74,7 +75,13 @@ define(
                 }else if (element.dataset.oper == "details"){
                     callPetDetails(petsList[element.dataset.pet]);
                 }
-            } );    
+            } );
+
+            //create presenter    
+            $('#add-new-pet').on('click', function(e){
+                e.preventDefault();
+                callPetCreate();
+            });
         }
 
         // call pet details presenter, which shows pet details view
@@ -85,6 +92,11 @@ define(
         // call pet edit presenter, which shows pet edit view
         function callPetEdit(model){
             petEdit.init(model, mainContainer, initialize);
+        }
+
+        // call pet create presenter, which shows pet create view
+        function callPetCreate(){
+            petCreate.init(mainContainer, initialize);
         }
 
         function initialize(viewContainer){

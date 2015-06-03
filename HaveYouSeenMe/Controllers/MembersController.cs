@@ -323,8 +323,8 @@ namespace HaveYouSeenMe.Controllers
             {
                 filteredPets = missingPets
                                .Where(p => p.PetName.IndexOf(param.sSearch, StringComparison.OrdinalIgnoreCase) >= 0
-                                  || p.LastSeenWhere.IndexOf(param.sSearch, StringComparison.OrdinalIgnoreCase) >= 0
-                                  || String.Format("{0:dd/MM/yyyy}", p.LastSeenOn).Contains(param.sSearch));
+                                  || (p.LastSeenWhere != null && p.LastSeenWhere.IndexOf(param.sSearch, StringComparison.OrdinalIgnoreCase) >= 0)
+                                  || (p.LastSeenOn != null && String.Format("{0:dd/MM/yyyy}", p.LastSeenOn).Contains(param.sSearch)));
             }
             else
             {
@@ -370,7 +370,10 @@ namespace HaveYouSeenMe.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return Json(new
+                {
+                    error = "Invalid data"
+                }, JsonRequestBehavior.AllowGet);
             }
 
             //convert the view model to data model
@@ -385,12 +388,18 @@ namespace HaveYouSeenMe.Controllers
             {
                 //could not persist updated data
                 ModelState.AddModelError("", Ex.Message);
-                return View(model);
+                return Json(new
+                {
+                    error = Ex.Message
+                }, JsonRequestBehavior.AllowGet);                
             }
             catch (Exception Ex)
             {
                 ModelState.AddModelError("", "Unknown Error");
-                return View(model);
+                return Json(new
+                {
+                    error = "Unknown Error"
+                }, JsonRequestBehavior.AllowGet);
             }
 
             return Json(new
@@ -405,7 +414,10 @@ namespace HaveYouSeenMe.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("NotFound");
+                return Json(new
+                {
+                    error = "Invalid data"
+                }, JsonRequestBehavior.AllowGet);
             }
 
             try
@@ -422,7 +434,10 @@ namespace HaveYouSeenMe.Controllers
             catch (Exception Ex)
             {
                 ModelState.AddModelError("", "Could not upload image, try later");
-                return View("Edit", new PetModel { PetName = petName });
+                return Json(new
+                {
+                    error = "Could not upload image, try later"
+                }, JsonRequestBehavior.AllowGet);
             }
 
             return Json(new
@@ -430,6 +445,50 @@ namespace HaveYouSeenMe.Controllers
                 message = "Pet updated"
             },
             JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult CreateAjaxHandler(PetModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(new {
+                    error = "Invalid data"
+                }, JsonRequestBehavior.AllowGet);
+            }
+
+            //convert the view model to data model
+            Pet pet = model.ToDataModel();
+
+            //instruct the business layer to persist the new object
+            try
+            {
+                pet = PetManager.CreateNew(pet, User.Identity.Name);
+            }
+            catch (ApplicationException Ex)
+            {
+                //could not persist new data
+                ModelState.AddModelError("", Ex.Message);
+                return Json(new
+                {
+                    error = Ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception Ex)
+            {
+                ModelState.AddModelError("", "Unknown Error");
+                return Json(new
+                {
+                    error = "Unknown Error"
+                }, JsonRequestBehavior.AllowGet);
+            }
+
+            //succeed, transform to pet model and returned via JSON
+            PetModel data = ModelsConverter.ConvertModel<PetModel>(pet);
+            return Json(new
+            {
+                model = data
+            }, JsonRequestBehavior.AllowGet);            
         }
 
         public ActionResult NotFound()

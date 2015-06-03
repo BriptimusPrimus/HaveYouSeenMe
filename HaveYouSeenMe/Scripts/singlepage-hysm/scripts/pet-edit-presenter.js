@@ -64,8 +64,12 @@ define(["view-renderer", "pet-details-presenter"],
 		        // Set content type to false as jQuery will tell the server its a query string request
 		        contentType: false, 
 			}).done(function (data, status, jqXHR) {			  	
-			  	//go to pet details
-			  	petDetails.init(model, mainContainer, fnGoBack);
+			  	if(data.message){
+				  	//go to pet details
+				  	petDetails.init(model, mainContainer, fnGoBack);
+			  	} else {
+					alert("Error: " + data.error);
+			  	}
 			}).fail(function (jqXHR,status,err) {
 				alert("Could not upload picture. " + err);
 				console.log(err);
@@ -91,13 +95,16 @@ define(["view-renderer", "pet-details-presenter"],
 			  	data: pet,
 			  	dataType: "json"
 			}).done(function (data, status, jqXHR) {
-			  	//go back to pets owned list
-			  	// alert("success: " + data.message);
-			  	fnGoBack();
+			  	if(data.message){
+			  		//go back to pets owned list
+			  		fnGoBack();
+			  	} else {
+			  		alert("Error: " + data.error);			  		
+			  	}
 			}).fail(function (jqXHR,status,err) {
-				alert("Promise error callback." + err);
+				alert("Could not update pet. " + err);
 			}).always(function () {
-			})			
+			});			
 		}
 
 		function validatePetData(pet){

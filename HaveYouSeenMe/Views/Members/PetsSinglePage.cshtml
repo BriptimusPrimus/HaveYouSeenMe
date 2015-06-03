@@ -107,7 +107,7 @@
 <script id="pets-owned-view" type="text/x-handlebars-template">​
     <h2>Pets Owned Single Page</h2>
     <p>
-        <a href="/Members/Create">Add New Pet</a>
+        <a id="add-new-pet" href="#">Add New Pet</a>
     </p>
     <table id="data-grid" class="stripe hover row-border order-column">
         <thead>
@@ -137,7 +137,7 @@
 </script>
 
 <script id="pet-edit-view" type="text/x-handlebars-template">​
-
+    <h2>Edit Pet Data [{{PetName}}]</h2>
     <form action="/Members/PictureUploadAjaxHandler" enctype="multipart/form-data" id="UploadForm" method="post">
 	    <div class="editor-field">
             <input accept=".jpg" id="PictureFile" name="PictureFile" style="display: none" type="file" value="" />
@@ -152,9 +152,9 @@
 	    </div>
     </form>
 
-    <form action="/Members/Edit/5" method="post">    
+    <form novalidate="novalidate">    
 	    <fieldset>
-		    <legend>PetModel</legend>
+		    <legend>Pet</legend>
 		
 		    <div class="display-field">
 			    <img src="/Content/Uploads/{{PetName}}.jpg" id="PetImage" style="width:150px;height:120px" />
@@ -221,6 +221,70 @@
         <a id="back-to-list" href="#">Back to Pets List</a>
     </div>
 </script>
+
+<script id="pet-create-view" type="text/x-handlebars-template">
+    <h2>Add New Pet</h2>
+    <form novalidate="novalidate">	
+        <fieldset>
+            <legend>Pet</legend>
+
+            <div class="editor-label">
+                <label for="PetName">Name:</label>
+            </div>
+            <div class="editor-field">
+                <input class="text-box single-line" data-val="true" data-val-length="You can only add up to 100 characters" data-val-length-max="100" data-val-required="Please type your pet name" id="PetName" name="PetName" type="text" value="">
+                <span class="field-validation-valid" data-valmsg-for="PetName" data-valmsg-replace="true"></span>
+            </div>
+
+            <div class="editor-label">
+                <label for="PetAgeYears">Years:</label>
+            </div>
+            <div class="editor-field">
+                <input class="text-box single-line" data-val="true" data-val-number="The field Years: must be a number." data-val-range="The value must be 0 or greater than 0" data-val-range-max="2147483647" data-val-range-min="0" id="PetAgeYears" name="PetAgeYears" type="number" value="">
+                <span class="field-validation-valid" data-valmsg-for="PetAgeYears" data-valmsg-replace="true"></span>
+            </div>
+
+            <div class="editor-label">
+                <label for="PetAgeMonths">Months:</label>
+            </div>
+            <div class="editor-field">
+                <input class="text-box single-line" data-val="true" data-val-number="The field Months: must be a number." data-val-range="The value must be 0 or greater than 0" data-val-range-max="2147483647" data-val-range-min="0" id="PetAgeMonths" name="PetAgeMonths" type="number" value="">
+                <span class="field-validation-valid" data-valmsg-for="PetAgeMonths" data-valmsg-replace="true"></span>
+            </div>
+
+            <div class="editor-label">
+                <label for="LastSeenOn">Last Seen On:</label>
+            </div>
+            <div class="editor-field">
+                <input class="text-box single-line" data-val="true" data-val-date="The field Last Seen On: must be a date." id="LastSeenOn" name="LastSeenOn" type="date" value="">
+                <span class="field-validation-valid" data-valmsg-for="LastSeenOn" data-valmsg-replace="true"></span>
+            </div>
+
+            <div class="editor-label">
+                <label for="LastSeenWhere">Last Seen At:</label>
+            </div>
+            <div class="editor-field">
+                <input class="text-box single-line" id="LastSeenWhere" name="LastSeenWhere" type="text" value="">
+                <span class="field-validation-valid" data-valmsg-for="LastSeenWhere" data-valmsg-replace="true"></span>
+            </div>
+
+            <div class="editor-label">
+                <label for="Notes">Notes:</label>
+            </div>
+            <div class="editor-field">
+                <textarea class="text-box multi-line" data-val="true" data-val-length="You can only add up to 400 characters" data-val-length-max="400" id="Notes" name="Notes"></textarea>
+                <span class="field-validation-valid" data-valmsg-for="Notes" data-valmsg-replace="true"></span>
+            </div>
+
+            <p>             
+                <input type="submit" value="Save" id="btn-save" />
+            </p>
+        </fieldset>
+    </form>
+    <div>
+        <a id="back-to-list" href="#">Back to Pets List</a>
+    </div>
+</script>    
 
 <main id="pets-owned-container"> 
 
